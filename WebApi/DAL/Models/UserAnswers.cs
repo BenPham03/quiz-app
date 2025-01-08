@@ -2,7 +2,6 @@
 {
     public class UserAnswers
     {
-        public Guid Id { get; set; }
         public Guid? AttemptId { get; set; }
         public Attempts? Attempts { get; set; }
         public Guid? QuestionId { get; set; }

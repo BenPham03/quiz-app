@@ -14,7 +14,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // read ConnectionString from appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
 
 // add DataDbContext
 builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(connectionString));

@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 
 namespace DAL.Data
 {
-    public class DataDbContext:IdentityDbContext<AppUser>
+    public class DataDbContext : IdentityDbContext<AppUser>
     {
         private readonly IConfiguration _configuration;
         public DbSet<Quizzes> Quizzes { get; set; }
@@ -31,6 +31,8 @@ namespace DAL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // ------------------- AppUser Configuration -------------------
 
             // AppUser → Quizzes
             modelBuilder.Entity<AppUser>()

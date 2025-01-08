@@ -18,10 +18,10 @@ namespace DAL.Models
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
         [JsonIgnore]
-        public ICollection<Questions> Questions { get; set; }= new List<Questions>();
+        public ICollection<Questions> Questions { get; set; } = new List<Questions>();
         [JsonIgnore]
         public ICollection<Interactions> Interactions { get; set; } = new List<Interactions>();
         [JsonIgnore]
-        public ICollection<Attempts> Attempts { get; set; }=new List<Attempts>();
+        public ICollection<Attempts> Attempts { get; set; } = new List<Attempts>();
     }
 }
