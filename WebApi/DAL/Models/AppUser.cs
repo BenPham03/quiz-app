@@ -6,6 +6,7 @@ namespace DAL.Models
     public class AppUser:IdentityUser
     {
         public string? Image { get; set; }
+        public string Timeline { get; set; } = $"{{{DateOnly.FromDateTime(DateTime.Now)}:3600}}";
         [JsonIgnore]
         public ICollection<Quizzes> Quizzes { get; set; }=new List<Quizzes>();
         [JsonIgnore]
