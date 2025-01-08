@@ -131,8 +131,11 @@ namespace DAL.Data
             modelBuilder.Entity<Interactions>()
                 .HasIndex(i => new { i.UserId, i.QuizzId })
                 .IsUnique();
+<<<<<<< HEAD
 
             //modelBuilder.Seed();
+=======
+>>>>>>> fe1aeced035bf722e53c0a8b0b7c32b7244f5fb4
         }
     }
 }
