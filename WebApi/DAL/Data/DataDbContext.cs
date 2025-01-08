@@ -129,14 +129,14 @@ namespace DAL.Data
                 .HasOne(ua => ua.Questions)
                 .WithMany(at => at.UserAnswers)
                 .HasForeignKey(ua => ua.QuestionId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
             // UserAnswers → Anwsers  
             modelBuilder.Entity<UserAnswers>()
                 .HasOne(ua => ua.Answers)
                 .WithMany(at => at.UserAnswers)
                 .HasForeignKey(ua => ua.AnswerId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             // ------------------- Enum Configuration -------------------
