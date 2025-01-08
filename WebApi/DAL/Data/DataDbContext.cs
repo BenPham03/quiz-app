@@ -46,14 +46,14 @@ namespace DAL.Data
                 .HasMany(a => a.Interactions)
                 .WithOne(i => i.User)
                 .HasForeignKey(i => i.UserId)
-                .OnDelete(DeleteBehavior.SetNull); // Đặt UserId null khi User bị xóa
+                .OnDelete(DeleteBehavior.NoAction); // Đặt UserId null khi User bị xóa
 
             // AppUser → Attempts
             modelBuilder.Entity<AppUser>()
                 .HasMany(a => a.Attempts)
                 .WithOne(at => at.User)
                 .HasForeignKey(at => at.UserId)
-                .OnDelete(DeleteBehavior.SetNull); // Đặt UserId null khi User bị xóa
+                .OnDelete(DeleteBehavior.NoAction); // Đặt UserId null khi User bị xóa
 
             //// ------------------- Quizzes Configuration -------------------
 
@@ -87,30 +87,52 @@ namespace DAL.Data
                 .HasForeignKey(ans => ans.QuestionId)
                 .OnDelete(DeleteBehavior.Cascade); // Xóa Answers khi Questions bị xóa
 
-            // Questions → UserAnswers
-            modelBuilder.Entity<Questions>()
-                .HasMany<UserAnswers>(ques => ques.UserAnswers)
-                .WithOne(ua => ua.Questions)
-                .HasForeignKey(ua => ua.QuestionId)
-                .OnDelete(DeleteBehavior.SetNull); 
+            // ---------------------UserAnswer Cofiguration---------------------
 
-            // ------------------- Answers Configuration -------------------
+            modelBuilder.Entity<UserAnswers>(ua => ua.HasKey(a => new { a.AnswerId, a.QuestionId, a.AttemptId }));
 
-            // Answers → UserAnswers
-            modelBuilder.Entity<Answers>()
-                .HasMany(ans => ans.UserAnswers)
-                .WithOne(ua => ua.Answers)
-                .HasForeignKey(ua => ua.AnswerId)
-                .OnDelete(DeleteBehavior.SetNull); 
-
-            // ------------------- Attempts Configuration -------------------
-
-            // Attempts → UserAnswers
-            modelBuilder.Entity<Attempts>()
-                .HasMany(at => at.UserAnswers)
-                .WithOne(ua => ua.Attempts)
+            // UserAnswers → Attempts  
+            modelBuilder.Entity<UserAnswers>()
+                .HasOne(ua => ua.Attempts)
+                .WithMany(at => at.UserAnswers)
                 .HasForeignKey(ua => ua.AttemptId)
-                .OnDelete(DeleteBehavior.Cascade); // Xóa UserAnswers khi Attempts bị xóa
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // UserAnswers → Questions  
+            modelBuilder.Entity<UserAnswers>()
+                .HasOne(ua => ua.Questions)
+                .WithMany(at => at.UserAnswers)
+                .HasForeignKey(ua => ua.QuestionId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            // UserAnswers → Anwsers  
+            modelBuilder.Entity<UserAnswers>()
+                .HasOne(ua => ua.Answers)
+                .WithMany(at => at.UserAnswers)
+                .HasForeignKey(ua => ua.AnswerId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            // ------------------- Enum Configuration -------------------
+
+            // Lưu QuestionType dưới dạng chuỗi
+            modelBuilder.Entity<Questions>()
+                .Property(ques => ques.QuestionType)
+                .HasConversion<string>();
+
+            // Lưu InteractType dưới dạng chuỗi
+            modelBuilder.Entity<Interactions>()
+                .Property(inter => inter.Type)
+                .HasConversion<string>();
+
+            // ------------------- Index Configuration -------------------
+
+            // Unique constraint cho Interactions (UserId, QuizzId)
+            modelBuilder.Entity<Interactions>()
+                .HasIndex(i => new { i.UserId, i.QuizzId })
+                .IsUnique();
+
+            modelBuilder.Seed();
         }
     }
 }

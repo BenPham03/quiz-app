@@ -132,15 +132,15 @@ namespace DAL.Data
             
             // Seed UserAnswers data
             modelBuilder.Entity<UserAnswers>().HasData(
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer1Id, QuestionId = question1Id, AttemptId = attempt1Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer4Id, QuestionId = question2Id, AttemptId = attempt1Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer7Id, QuestionId = question3Id, AttemptId = attempt1Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer2Id, QuestionId = question1Id, AttemptId = attempt2Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer5Id, QuestionId = question2Id, AttemptId = attempt2Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer8Id, QuestionId = question3Id, AttemptId = attempt2Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer3Id, QuestionId = question1Id, AttemptId = attempt3Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer6Id, QuestionId = question2Id, AttemptId = attempt3Id },
-                new UserAnswers { Id = Guid.NewGuid(), AnswerId = answer9Id, QuestionId = question3Id, AttemptId = attempt3Id }
+                new UserAnswers {  AnswerId = answer1Id, QuestionId = question1Id, AttemptId = attempt1Id },
+                new UserAnswers {  AnswerId = answer4Id, QuestionId = question2Id, AttemptId = attempt1Id },
+                new UserAnswers {  AnswerId = answer7Id, QuestionId = question3Id, AttemptId = attempt1Id },
+                new UserAnswers { AnswerId = answer2Id, QuestionId = question1Id, AttemptId = attempt2Id },
+                new UserAnswers {  AnswerId = answer5Id, QuestionId = question2Id, AttemptId = attempt2Id },
+                new UserAnswers {  AnswerId = answer8Id, QuestionId = question3Id, AttemptId = attempt2Id },
+                new UserAnswers { AnswerId = answer3Id, QuestionId = question1Id, AttemptId = attempt3Id },
+                new UserAnswers { AnswerId = answer6Id, QuestionId = question2Id, AttemptId = attempt3Id },
+                new UserAnswers { AnswerId = answer9Id, QuestionId = question3Id, AttemptId = attempt3Id }
             );
         } 
     } 

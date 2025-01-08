@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "E:\\Angular\\quiz-app\\WebApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106085139_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DAL\\Migrations\\20250106085139_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\data\\datadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\data\\datadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\data\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\data\\modelbuilderextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\useranswers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\useranswers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\quizzes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\quizzes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\attempts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,16 +35,8 @@
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\quizzes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\quizzes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106084850_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DAL\\Migrations\\20250106084850_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,43 +46,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20250106085139_initDB.cs",
-              "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106085139_initDB.cs",
-              "RelativeDocumentMoniker": "DAL\\Migrations\\20250106085139_initDB.cs",
-              "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106085139_initDB.cs",
-              "RelativeToolTip": "DAL\\Migrations\\20250106085139_initDB.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T08:51:39.893Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "20250106084850_initDB.cs",
-              "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106084850_initDB.cs",
-              "RelativeDocumentMoniker": "DAL\\Migrations\\20250106084850_initDB.cs",
-              "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Migrations\\20250106084850_initDB.cs",
-              "RelativeToolTip": "DAL\\Migrations\\20250106084850_initDB.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T08:48:50.63Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ModelBuilderExtensions.cs",
+              "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Data\\ModelBuilderExtensions.cs",
+              "RelativeDocumentMoniker": "DAL\\Data\\ModelBuilderExtensions.cs",
+              "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Data\\ModelBuilderExtensions.cs*",
+              "RelativeToolTip": "DAL\\Data\\ModelBuilderExtensions.cs*",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAgwJMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T07:18:05.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "DataDbContext.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Data\\DataDbContext.cs",
               "RelativeDocumentMoniker": "DAL\\Data\\DataDbContext.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Data\\DataDbContext.cs",
               "RelativeToolTip": "DAL\\Data\\DataDbContext.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAgwIAAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAIUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T07:07:55.374Z",
               "EditorCaption": ""
@@ -99,14 +82,14 @@
               "RelativeDocumentMoniker": "DAL\\Models\\UserAnswers.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\UserAnswers.cs",
               "RelativeToolTip": "DAL\\Models\\UserAnswers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T06:56:28.293Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Attempts.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Attempts.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Attempts.cs",
@@ -119,7 +102,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Interactions.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Interactions.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Interactions.cs",
@@ -132,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Answers.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Answers.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Answers.cs",
@@ -145,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Questions.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Questions.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Questions.cs",
@@ -158,13 +141,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "Quizzes.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Quizzes.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Quizzes.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\Quizzes.cs",
               "RelativeToolTip": "DAL\\Models\\Quizzes.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA8wBAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAIwAwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T06:25:55.211Z",
               "EditorCaption": ""
@@ -177,7 +160,7 @@
               "RelativeDocumentMoniker": "DAL\\Models\\AppUser.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\AppUser.cs",
               "RelativeToolTip": "DAL\\Models\\AppUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T06:23:19.667Z",
               "EditorCaption": ""
