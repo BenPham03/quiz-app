@@ -132,7 +132,7 @@ namespace DAL.Data
                 .HasIndex(i => new { i.UserId, i.QuizzId })
                 .IsUnique();
 
-            modelBuilder.Seed();
+            //modelBuilder.Seed();
         }
     }
 }

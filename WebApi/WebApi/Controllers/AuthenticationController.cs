@@ -1,5 +1,6 @@
 ﻿using BLL.ViewModels;
 using DAL.Data;
+using DAL.Helpers;
 using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -54,6 +55,41 @@ namespace WebApi.Controllers
             return BadRequest($"User could not be created. Errors: {errors}");
         }
 
+
+        [HttpPost("register-admin")]
+        public async Task<IActionResult> RegisterAdmin([FromBody] RegisterVM registerVM)
+        {
+            var temp = await _userManager.FindByEmailAsync(registerVM.Email);
+            if (temp != null)
+            {
+                return BadRequest($"User with email {registerVM.Email} is already exists");
+            }
+
+            var newUser = new AppUser()
+            {
+                UserName = registerVM.UserName,
+                Email = registerVM.Email,
+                SecurityStamp = new Guid().ToString(),
+            };
+
+            var result = await _userManager.CreateAsync(newUser, registerVM.Password);
+            if (result.Succeeded)
+            {
+                if (!await _roleManager.RoleExistsAsync(Role.Admin))
+                    await _roleManager.CreateAsync(new IdentityRole(Role.Admin));
+                if (!await _roleManager.RoleExistsAsync(Role.User))
+                    await _roleManager.CreateAsync(new IdentityRole(Role.User));
+
+                if (await _roleManager.RoleExistsAsync(Role.Admin))
+                {
+                    await _userManager.AddToRoleAsync(newUser, Role.Admin);
+                }
+                return Created(nameof(Register), $"User {registerVM.Email} created!");
+            }
+
+            var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+            return BadRequest($"User could not be created. Errors: {errors}");
+        }
         private async Task<AuthResultVM> GenerateToken(AppUser user)
         {
             var authClaims = new List<Claim>()
@@ -64,7 +100,12 @@ namespace WebApi.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub,user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
             };
-
+            var userRoles = await _userManager.GetRolesAsync(user);
+            //Add role to claim
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
             var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
 
             var token = new JwtSecurityToken(
