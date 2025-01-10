@@ -16,3 +16,6 @@ body{
     width: 100%;
     min-width: 150px;
 }
+i{
+    cursor: pointer;
+}
