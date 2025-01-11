@@ -1,0 +1,94 @@
+/* Container & Sidebar Base */
+mat-sidenav-container {
+    background-color: #f8f9fa;
+    height: 100vh;
+}
+
+mat-sidenav {
+    background-color: white;
+    width: 280px; /* Sidebar rộng hơn một chút */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Đẩy các phần tử cách đều nhau */
+    padding: 16px 0;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Section */
+.logo img{
+    height: 70%;
+    width: fit-content;
+}
+.nav-item img {
+    width: 20px; /* Đặt kích thước cụ thể cho ảnh icon */
+    height: 20px; /* Đặt chiều cao cụ thể */
+    margin-right: 10px; /* Khoảng cách giữa ảnh icon và text */
+  }
+.badge {
+    font-size: 14px; /* Tăng kích thước badge */
+    font-weight: bold;
+    color: #fff;
+    background-color: #a155db;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* Create Button */
+.btn-create {
+    width: 200px; /* Nút lớn hơn */
+    height: 56px;
+    background-color: #a155db;
+    color: white;
+    font-size: 18px; /* Tăng kích thước chữ */
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    margin: 24px 0; /* Cách đều các thành phần */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+.btn-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation Links */
+.nav-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px; /* Cách đều các mục */
+    color: black;
+    font-size: 18px; /* Tăng kích thước chữ */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+.nav-item i {
+    font-size: 22px; /* Biểu tượng lớn hơn */
+    margin-right: 16px;
+}
+.nav-item:hover {
+    background-color: #f1f1f1;
+    color: #a155db;
+}
+.nav-item.active {
+    background-color: #e8d8f6;
+    color: #a155db;
+    border-radius: 8px;
+}
+
+/* Căn giữa nội dung trong sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}

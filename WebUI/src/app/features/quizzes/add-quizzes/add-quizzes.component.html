@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="form-container">
+      <h3 class="mb-4">Form</h3>
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()">
+          <div class="mb-3">
+              <label for="examName" class="form-label">Exam Name</label>
+              <input type="text" class="form-control" id="examName" placeholder="Enter exam name" name="title" [(ngModel)]="model.title" >
+          </div>
+          <div class="row mb-3">
+              <div class="col">
+                  <label for="subject" class="form-label">Subject</label>
+                  <select class="form-select" id="subject" name="quizSubject" [(ngModel)]="model.subject">
+                      <option selected >Select Subject</option>
+                      <option value="Math">Math</option>
+                      <option value="Science">Science</option>
+                      <option value="History">History</option>
+                  </select>
+              </div>
+
+          </div>
+          <div class="mb-3">
+            <label for="config" class="form-label">Config</label>
+            <select class="form-select" id="school" name="schoolSubject" [(ngModel)]="model.config">
+                <option selected>Select Config</option>
+                <option value="Public">Public</option>
+                <option value="Private">Private</option>
+            </select>
+          </div>
+          <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" rows="3" placeholder="Enter description" name="desciptionSubject" [(ngModel)]="model.description"></textarea>
+          </div>
+
+          <h5 class="mt-4">Question List</h5>
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>Question</th>
+                      <th>Answer Question</th>
+                      <th>Right Answer</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td>
+                          <button class="btn btn-default btn-purple btn-spacing"><i class="bi bi-pencil">Xóa</i></button>
+                          <button class="btn btn-default btn-danger"><i class="bi bi-trash">Sửa</i></button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+
+          <div class="row mb-3">
+              <div class="col-md-8">
+                  <label for="question" class="form-label">Question</label>
+                  <input type="text" class="form-control" id="question" placeholder="Enter question">
+              </div>
+              <div class="col-md-4">
+                  <label for="questionType" class="form-label">Question Type</label>
+                  <select class="form-select" id="questionType">
+                      <option selected>Select Type</option>
+                      <option value="1">Multiple Choice</option>
+                      <option value="2">True/False</option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="row mb-3">
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Answer Right">
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Answer">
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Answer">
+              </div>
+              <div class="col">
+                  <input type="text" class="form-control" placeholder="Answer">
+              </div>
+          </div>
+
+          <button type="button" class="btn btn-purple mb-3 btn-spacing">Add Question</button>
+          <button type="submit" class="btn btn-purple mb-3 mr-3">Save</button>
+      </form>
+  </div>
+</div>

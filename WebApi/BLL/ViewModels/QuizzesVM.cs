@@ -1,19 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DAL.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
-namespace DAL.Models
+namespace BLL.ViewModels
 {
-    public class Quizzes
+    public class QuizzesVM
     {
         public Guid Id { get; set; }
         [MaxLength(100)]
         public string Title { get; set; }
         public string? Description { get; set; }
         public string Subject { get; set; }
-        public string Config {  get; set; }
+        public string Config { get; set; }
         public bool Status { get; set; } = false;
-        public DateTime CreatedAt { get; set; }= DateTime.Now;
-        public DateTime LastUpdateAt {  get; set; }= DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime LastUpdateAt { get; set; } = DateTime.Now;
 
 
         public string? UserId { get; set; }
