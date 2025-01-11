@@ -7,12 +7,12 @@ namespace DAL.Infratructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataDbContext _dbContext;
-        //private readonly CategoryRepository _category;
+        private readonly ReportRepository _report;
         //private readonly ProductRepository _product;
 
         public DataDbContext Context => _dbContext;
 
-        //public CategoryRepository Category => _category ?? new CategoryRepository(_dbContext);
+        public ReportRepository Report => _report ?? new ReportRepository(_dbContext);
 
         //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
 
