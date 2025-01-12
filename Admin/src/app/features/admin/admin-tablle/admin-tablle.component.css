@@ -1,0 +1,371 @@
+/* General Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Ensure the body takes the full height */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dashboard Styling */
+.dashboard {
+  font-family: Arial, sans-serif;
+  background-color: #f3f3f3;
+  padding: 20px;
+  flex: 1; /* Allows the dashboard to fill available vertical space */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensure dashboard takes full height */
+}
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+    border-radius: 25px; /* Bo tròn góc */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .quizizz {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #6f056f;
+  }
+  
+  .basic {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #7e1db6;
+    background-color: hsl(276, 79%, 96%);
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-left: 10px;
+  }
+  
+  
+  .date-time {
+    background-color: #e5e5e5;
+    color: #009df1;
+    margin-right: -60px;
+    margin-top: -5px; /* Thêm khoảng cách từ trên */
+    padding: 3px 10px; /* Thêm khoảng cách 3px ở trên và dưới, và 10px ở bên trái và phải */
+    border-radius: 5px; /* Bo góc của phần tử với bán kính 5px, tạo hiệu ứng góc tròn */
+  }
+  
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 0.4fr 1.2fr 0.4fr 1fr; /* 4 cột */
+  grid-template-rows: auto 1fr; /* Hàng đầu ngắn, hàng thứ hai dài hơn */
+  grid-template-areas: 
+    "online new-email new-user email-list "
+    "user-list user-list user-list email-list"; /* Bố cục theo hình */
+  gap: 20px;
+  margin-top: 20px;
+  flex: 1; /* Fills the remaining vertical space */
+}
+
+/* Box Styling cho Online và New User */
+.box {
+  background: white;
+  height: 170px;
+  padding: 10px; /* Giảm padding để tạo giao diện nhỏ gọn */
+  border-radius: 40px; /* Góc bo tròn nhẹ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  border: 1px solid #ccc; /* Đường viền nhẹ để phân cách */
+}
+
+/* Box Styling cho Online */
+.box.online {
+  display: flex; /* Sử dụng flexbox */
+  flex-direction: column; /* Xếp các phần tử theo cột */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  background: white;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Styling riêng cho chữ "Online" */
+.online h3 {
+  font-size: 1.2rem; /* Kích thước nhỏ hơn cho chữ "Online" */
+  font-weight: bold;
+  color: #000000;
+  margin: 0; /* Loại bỏ khoảng cách phía trên và dưới */
+  margin-bottom: -5px; /* Điều chỉnh khoảng cách giữa tiêu đề và số */
+  padding-top: 90px; /* Thêm khoảng cách từ trên xuống */
+}
+
+/* Styling riêng cho số "60" */
+.online .number {
+  font-size: 6rem; /* Kích thước lớn hơn cho số "60" */
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Box Styling cho New User */
+.box.new-user {
+  display: flex; /* Sử dụng flexbox */
+  flex-direction: column; /* Xếp các phần tử theo cột */
+  justify-content: center; /* Căn giữa theo chiều dọc */
+  align-items: center; /* Căn giữa theo chiều ngang */
+  background: white;
+  padding: 10px;
+  border-radius: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Styling riêng cho chữ "New User" */
+.new-user h3 {
+  font-size: 1.2rem;
+  color: #000000;
+  font-weight: bold;
+  margin: 0;
+  margin-bottom: -5px; /* Điều chỉnh khoảng cách giữa tiêu đề và số */
+  padding-top: 90px; /* Thêm khoảng cách từ trên xuống */
+}
+
+/* Styling riêng cho số "60" */
+.new-user .number {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+  
+/* New Email Box Styling */
+.new-email {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 30px;
+  justify-content: space-between;
+  padding: 20px;
+  height: auto; /* Chiều cao tự động dựa trên nội dung */
+}
+
+.new-email h3 {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 15px; /* Khoảng cách dưới tiêu đề */
+  margin-top: 5px; /* Điều chỉnh vị trí chữ lên hoặc xuống */
+}
+
+.new-email textarea {
+  width: 100%;
+  height: 42px; /* Tăng chiều cao hộp văn bản */
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: none; /* Không cho phép thay đổi kích thước */
+  box-sizing: border-box; /* Đảm bảo padding và border được tính trong width */
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Đặt khoảng cách giữa các nút */
+  width: 100%; /* Đảm bảo nút trải đều toàn chiều rộng */
+}
+
+.delete-button, .send-button {
+  background-color: #7e1db6;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.delete-button {
+  background-color: #d9534f; /* Màu đỏ cho nút Delete */
+}
+
+.delete-button:hover {
+  background-color: #c9302c;
+}
+
+.send-button:hover {
+  background-color: #5a1387;
+}
+
+  .user-list {
+    grid-area: user-list;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 94.3%;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow-y: auto; 
+    border-radius: 30px;
+  } 
+
+/* Tiêu đề User List */
+.user-list h3 {
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+  margin-top: 0; /* Đặt lại khoảng cách trên để căn chỉnh đúng vị trí */
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  padding-left: 15px;
+  z-index: 10;
+}
+
+  /* Container danh sách User List với khả năng cuộn */
+.user-list-list {
+  width: 100%;
+  overflow-x: hidden; /* Ẩn cuộn ngang */
+  max-height: 275px; /* Điều chỉnh chiều cao theo yêu cầu */
+}
+
+  .user-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .user-list th, .user-list td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .user-list img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;   /* Đảm bảo ảnh không bị méo */
+  }
+
+  .user-list td button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+/* Email List Container */
+.email-list {
+  grid-area: email-list;
+  display: flex;
+  flex-direction: column;
+  gap: 0px; /* Giảm khoảng cách giữa các email item */
+  padding: 0px; /* Giảm padding tổng thể */
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  height: 548.7px;
+  overflow-y: auto;
+  position: relative; /* Để định vị cho các phần tử con */
+}
+/* Sticky Header */
+.email-list h3 {
+  position: sticky; /* Giữ cố định tiêu đề khi cuộn */
+  top: 0; /* Cố định ở đầu box */
+  background: #fff; /* Nền trắng để trông gọn gàng */
+  padding: 15px 20px; /* Thêm padding để căn chỉnh đẹp hơn */
+  font-size: 1.2rem; /* Kích thước chữ cho tiêu đề */
+  font-weight: bold; /* Đậm hơn cho dễ đọc */
+  z-index: 10; /* Đảm bảo tiêu đề luôn ở trên các nội dung khác */
+  margin: 0; /* Xóa margin để không đẩy lên */
+}
+
+.email-items-list {
+  overflow-y: scroll; /* Thêm thanh cuộn khi nội dung vượt quá chiều cao */
+  padding-right: 10px; /* Giúp tránh phần nội dung bị ẩn sau thanh cuộn */
+}
+
+/* Email Item Styling */
+.email-item {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Giảm padding bên trong */
+  height: 30px; /* Giảm chiều cao của mỗi email item */
+  border-radius: 8px; /* Giảm độ bo tròn */
+  background-color: #f9f9f9;
+  border: 1px solid #eaeaea;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.email-item:hover {
+  background-color: #f0f0f0;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar Styling */
+.email-avatar img {
+  width: 35px; /* Giảm kích thước ảnh đại diện */
+  height: 35px;
+  border-radius: 50%; /* Đảm bảo ảnh đại diện luôn tròn */
+  border: 2px solid #d3d3f1;
+  object-fit: cover; /* Đảm bảo nội dung ảnh không bị méo */
+}
+
+/* Email Content Styling */
+.email-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Căn lề phải cho nội dung */
+  color: #333;
+  font-size: 13px; /* Giảm kích thước chữ */
+  line-height: 1.4;
+  padding-left: 10px;
+}
+
+.email-content p:first-child {
+  font-weight: 600;
+  margin: 0;
+  text-align: left; /* Căn chữ Name sang phải */
+}
+
+.email-content p:last-child {
+  margin: 5px 0 0;
+  font-size: 13px; /* Giảm kích thước chữ mô tả */
+  color: #555;
+  text-align: left; /* Căn chữ Email Content sang trái */
+}
+
+/* Options Styling */
+.email-options {
+  font-size: 45px; /* Giảm kích thước biểu tượng tuỳ chọn */
+  cursor: pointer;
+  color: #252323;
+  margin-left: auto;
+  transition: color 0.3s;
+}
+
+.email-options:hover {
+  color: #666;
+}
+  
+  .delete-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+ 
+  

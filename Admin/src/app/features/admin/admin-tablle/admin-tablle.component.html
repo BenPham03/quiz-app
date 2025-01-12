@@ -1,0 +1,79 @@
+<div class="dashboard">
+    <header class="header">
+        <div class="logo" (click)="onHome()">
+            <span class="quizizz">Quizizz</span>
+            <span class="basic">BASIC</span>
+        </div>
+        <div class="date-time">{{ currentDate }} -|- {{ currentTime }}</div>
+        <div class="times"></div>
+        <div class="weather">☀️</div>
+    </header>
+  
+    <div class="dashboard-grid">
+      <div class="box online">
+        <h3>Online</h3>
+        <p class="number">60</p>
+      </div>
+  
+      <div class="box new-email">
+        <h3>New Email</h3>
+        <textarea placeholder="Write an email to all users" [(ngModel)]="newEmailContent"></textarea>
+        <div class="button-container">
+          <button class="delete-button" (click)="clearEmailContent()">Delete</button>
+          <button class="send-button">Send</button>
+        </div>
+      </div>
+  
+      <div class="box new-user">
+        <h3>New User</h3>
+        <p class="number">60</p>
+      </div>
+  
+      <div class="box user-list">
+        <h3>User List</h3>
+        <div class="user-list-list">
+          <table>
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Exam Count</th>
+                <th>Exam Save</th>
+                <th>Exam Liked</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>
+                  <img [src]="user.avatar || 'image/Avatar.jpg'" alt="{{ user.email }}" class="user-avatar" />
+                </td>
+                <td>{{ user.examCount }}</td>
+                <td>{{ user.examSave }}</td>
+                <td>{{ user.examLiked }}</td>
+                <td>
+                  <button class="delete-btn">🗑️</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>      
+  
+      <div class="box email-list">
+        <h3>Email</h3>
+        <div class="email-items-list">
+          <div class="email-item" *ngFor="let email of emails">
+            <div class="email-avatar">
+               <img src="user-avatar-placeholder.png" alt="Avatar">
+            </div>
+            <div class="email-content">
+               <p>{{email.name}}</p>
+               <p>{{email.content}}</p>
+            </div>
+            <div class="email-options">⋮</div>
+        </div> 
+        </div>       
+      </div>
+    </div>
+  </div>
+  
