@@ -1,0 +1,51 @@
+<div class="quiz-container">
+  <!-- Tiêu đề -->
+  <header class="quiz-header">
+    <div class="quiz-logo"  (click)="onHome()">
+      <span class="quiz-title">Quizizz</span>
+      <span class="quiz-basic">BASIC</span>
+    </div>
+    <div class="quiz-main-title">Quizz Title</div>
+    <div class="quiz-timer">60:00</div>  
+    <!-- <div class="quiz-timer">{{ displayTime }}</div> -->
+    <div class="quiz-date">{{ currentDate }}</div>
+    <div class="quiz-times">{{ currentTime }}</div>
+  </header>
+
+  <!-- Nội dung chính -->
+  <div class="quiz-content">
+    <div class="question-card" *ngFor="let question of questions" [id]="'question-' + question.id">
+      <div class="question-header">
+        <p class="question-title"><strong>#{{ question.id }}:</strong> {{ question.content }}</p>
+        <div class="reseen-checkbox">
+          <label>
+            <input type="checkbox" />
+            Reseen
+          </label>
+        </div>
+      </div>
+      <div class="options">
+        <label *ngFor="let option of question.options" class="option-label">
+          <input type="radio" name="question{{ question.id }}" (change)="onOptionSelected(question.id)" />
+          {{ option }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thanh bên -->
+  <div class="quiz-sidebar">
+    <div
+      class="question-indicator"
+      *ngFor="let question of questions"
+      [ngClass]="{ 'answered': question.answered, 'not-answered': !question.answered }"
+      (click)="scrollToQuestion(question.id)">
+      {{ question.id }}
+    </div>
+  </div> 
+
+  <!-- Chân trang -->
+  <footer class="quiz-footer">
+    <button class="submit-button" (click)="onSubmit()">Submit</button>
+  </footer>
+</div>
