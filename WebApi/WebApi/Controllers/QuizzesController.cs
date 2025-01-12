@@ -25,7 +25,16 @@ namespace WebApi.Controllers
                 Config = addquizzesVM.Config,
                 Description = addquizzesVM.Description,
                 Subject = addquizzesVM.Subject,
-                Questions = addquizzesVM.Questions
+                Questions = addquizzesVM.Questions.Select(q => new Questions
+                {
+                    QuestionContent = q.QuestionContent,
+                    QuestionType = (QuestionType)q.QuestionType,
+                    Answers = q.Answers.Select(a => new Answers
+                    {
+                        AnswerContent = a.AnswerContent,
+                        IsCorrect = a.IsCorrect
+                    }).ToList()
+                }).ToList()
 
             };
             await dbContext.Quizzes.AddAsync(quizzes);

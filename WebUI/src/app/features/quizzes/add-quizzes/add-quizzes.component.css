@@ -1,6 +1,6 @@
 body {
   background-color: #e9ecef;
-  padding: 20px;
+  padding: auto;
 }
 .form-container {
   background-color: #f8f9fa;
@@ -18,4 +18,7 @@ body {
 }
 .btn-spacing {
   margin-right: 5px;
+}
+.btn-spacing-left{
+  margin-left: 5px;
 }

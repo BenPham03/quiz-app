@@ -1,17 +1,22 @@
 export interface AddQuizzesRequest{
     title: string;
     description: string;
-    config: string;
-    subject: string;
+    config?: any;
+    createdAt?: Date;
+    lastUpdateAt?: Date;
+    userId?: number;
     questions: Question[];
-}
-
-interface Question {
-    questionText: string;
+    subject:string;
+  }
+  
+  export interface Question {
+    questionContent: string;
     questionType: string;
     answers: Answer[];
-    correctAnswerIndex: number; 
   }
-  interface Answer {
-    answerText: string;
+  
+  export interface Answer {
+    answerContent: string;
+    isCorrect: boolean;
   }
+  

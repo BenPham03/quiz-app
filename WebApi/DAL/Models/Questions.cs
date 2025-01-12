@@ -2,6 +2,7 @@
 
 namespace DAL.Models
 {
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum QuestionType
     {
         Choice,
