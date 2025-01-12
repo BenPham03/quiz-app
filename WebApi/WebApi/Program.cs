@@ -1,3 +1,4 @@
+using BLL.Services;
 using BLL.Services.Base;
 using DAL.Data;
 using DAL.Infratructure;
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(con
 // Add services to the container
 //builder.Services.AddScoped<IBaseService<Category>, CategoryService>();
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
+builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 

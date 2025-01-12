@@ -1,5 +1,6 @@
 ﻿using DAL.Data;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 namespace DAL.Repositories
 {
     public class ReportRepository:GenericRepository<Quizzes>
@@ -11,83 +12,118 @@ namespace DAL.Repositories
             _dbContext = dbContext;
         }
 
-        public List<Questions> top5right(Guid id)
+        public async Task<List<Quizzes>> QuizzList() 
         {
-            var quiz = GetById(id);
-            if (quiz == null || quiz.Questions == null)
+            return await _dbContext.Quizzes.ToListAsync();
+        }
+
+        public async Task<List<Questions>> top5right(Guid id)
+        {
+            var quizz = await _dbContext.Quizzes
+                        .Include(q => q.Attempts)
+                            .ThenInclude(a => a.UserAnswers)
+                            .ThenInclude(ua => ua.Questions)
+                        .Include(q => q.Attempts)
+                            .ThenInclude(a => a.UserAnswers)
+                            .ThenInclude(ua => ua.Answers)
+                        .FirstOrDefaultAsync(q => q.Id == id);
+
+            if (quizz == null || quizz.Attempts == null || !quizz.Attempts.Any())
             {
-                return new List<Questions>(); // Trả về danh sách rỗng nếu quiz hoặc Questions là null
+                return new List<Questions>();
             }
-            var result = quiz
-                .Questions
-                .Select(q=>new
+
+            var result = quizz.Attempts
+                .Where(a => a.UserAnswers != null) // Lọc các Attempts có UserAnswers
+                .SelectMany(a => a.UserAnswers)
+                .Where(ua => ua.Questions != null && ua.Answers != null) // Lọc câu trả lời có Questions và Answers
+                .GroupBy(ua => ua.Questions) // Nhóm theo câu hỏi
+                .Where(g => g.Key != null) // Đảm bảo nhóm có câu hỏi hợp lệ
+                .Select(g => new
                 {
-                    Question=q,
-                    Count=q.UserAnswers.Count(a=>a.Answers.IsCorrect)
+                    Question = g.Key, // Lấy câu hỏi từ nhóm
+                    Count = g.Count(ua => ua.Answers.IsCorrect) // Đếm số câu trả lời đúng
                 })
-                .OrderByDescending(q=>q.Count)
-                .Select(q=>q.Question)
-                .Take(5)
+                .OrderByDescending(q => q.Count) // Sắp xếp giảm dần theo số câu trả lời đúng
+                .Take(5) // Lấy top 5
+                .Select(q => q.Question) // Lấy câu hỏi từ kết quả
                 .ToList();
+
             return result;
         }
 
-        public List<Questions> top5wrong(Guid id)
+        public async Task<List<Questions>> top5wrong(Guid id)
         {
-            var quiz = GetById(id);
-            if (quiz == null || quiz.Questions == null)
+            var quizz = await _dbContext.Quizzes
+                        .Include(q => q.Attempts)
+                            .ThenInclude(a => a.UserAnswers)
+                            .ThenInclude(ua => ua.Questions)
+                        .Include(q => q.Attempts)
+                            .ThenInclude(a => a.UserAnswers)
+                            .ThenInclude(ua => ua.Answers)
+                        .FirstOrDefaultAsync(q => q.Id == id);
+
+            if (quizz == null || quizz.Attempts == null || !quizz.Attempts.Any())
             {
-                return new List<Questions>(); // Trả về danh sách rỗng nếu quiz hoặc Questions là null
+                return new List<Questions>();
             }
-            var result = quiz
-                .Questions
-                .Select(q=>new
+
+            var result = quizz.Attempts
+                .Where(a => a.UserAnswers != null) 
+                .SelectMany(a => a.UserAnswers)
+                .Where(ua => ua.Questions != null && ua.Answers != null) 
+                .GroupBy(ua => ua.Questions) 
+                .Where(g => g.Key != null)
+                .Select(g => new
                 {
-                    Question=q,
-                    Count=q.UserAnswers.Count(a=>!a.Answers.IsCorrect)
+                    Question = g.Key, // Lấy câu hỏi từ nhóm
+                    Count = g.Count(ua => !ua.Answers.IsCorrect)
                 })
-                .OrderByDescending (q=>q.Count)
-                .Select(q=>q.Question)
-                .Take(5)
+                .OrderByDescending(q => q.Count)
+                .Take(5) // Lấy top 5
+                .Select(q => q.Question) 
                 .ToList();
+
             return result;
         }
 
-        public List<dynamic> rank(Guid id)
+        public async Task<List<RankVM>> rank(Guid id)
         {
-            var quiz = GetById(id);
-            if (quiz == null || quiz.Questions == null)
-            {
-                return new List<dynamic>(); // Trả về danh sách rỗng nếu quiz hoặc Questions là null
-            }
-            var result = quiz
-                .Attempts
-                .Select(q => new
-                {
-                    User=q.User,
-                    Attempt=q,
-                })
-                .OrderByDescending(q => q.Attempt.Score)
-                .ToList<dynamic>();
-            return result;
+            var quizz = await _dbContext.Quizzes
+                        .Where(q => q.Id == id)
+                        .Include(q => q.Attempts)
+                            .ThenInclude(u => u.User)
+                        .SelectMany(q=>q.Attempts)
+                        .Select(i => new RankVM
+                        {
+                            Image = i.User != null && i.User.Image != null ? i.User.Image: "DefaultImage.png",
+                            UserName = i.User != null && i.User.UserName != null ? i.User.UserName : i.Name+" **",
+                            AttemptAt=i.AttemptAt,
+                            Score=i.Score,
+                            Duration=i.Duration
+                        })
+                        .OrderByDescending(i=>i.Score)
+                        .ToListAsync();
+            return quizz;
         }
 
-        public List<dynamic> analyst(Guid id)
+        public async Task<List<RankVM>> analyst(Guid id)
         {
-            var quiz = GetById(id);
-            if (quiz == null || quiz.Questions == null)
-            {
-                return new List<dy>(); // Trả về danh sách rỗng nếu quiz hoặc Questions là null
-            }
-            var result = quiz
-                .Attempts
-                .Select(q => new
-                {
-                    User = q.User,
-                    Attempt = q,
-                })
-                .ToList<dynamic>();
-            return result;
+            var quizz = await _dbContext.Quizzes
+                        .Where(q => q.Id == id)
+                        .Include(q => q.Attempts)
+                            .ThenInclude(u => u.User)
+                        .SelectMany(q => q.Attempts)
+                        .Select(i => new RankVM
+                        {
+                            Image = i.User != null && i.User.Image != null ? i.User.Image : "DefaultImage.png",
+                            UserName = i.User != null && i.User.UserName != null ? i.User.UserName : i.Name + " **",
+                            AttemptAt = i.AttemptAt,
+                            Score = i.Score,
+                            Duration = i.Duration
+                        })
+                        .ToListAsync();
+            return quizz;
         }
     }
 }

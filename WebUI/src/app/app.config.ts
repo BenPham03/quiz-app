@@ -14,3 +14,5 @@ export const appConfig: ApplicationConfig = {
     )
   ]
 };
+
+export const BASE_URL:string="https://localhost:7282/api"

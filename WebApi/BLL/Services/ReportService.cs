@@ -3,6 +3,8 @@ using BLL.ViewModels;
 using DAL.Infratructure;
 using DAL.Models;
 using DAL.Repositories;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace BLL.Services
 {
@@ -12,51 +14,30 @@ namespace BLL.Services
         {
         }
 
-        public List<Questions> top5right(Guid examId)
+        public async Task<List<Quizzes>> GetQuizzes()
         {
-            return _unitOfWork.Report.top5right(examId);
+            return await _unitOfWork.Report.QuizzList();
         }
 
-        public List<Questions> top5wrong(Guid examId)
+        public async Task<List<Questions>> top5right(Guid examId)
         {
-            return _unitOfWork.Report.top5wrong(examId);
+            return await _unitOfWork.Report.top5right(examId);
         }
 
-        public List<RankVM> Rank(Guid examId)
+        public async Task<List<Questions>> top5wrong(Guid examId)
         {
-            var data = _unitOfWork.Report.rank(examId);
-            var result=new List<RankVM>();
-            foreach (var item in data) 
-            {
-                RankVM newItem=new RankVM() 
-                { 
-                    Name=((dynamic)item).User.UserName,
-                    Image= ((dynamic)item).User.Image,
-                    AttemptAt= ((dynamic)item).Attempt.AttemptAt,
-                    Duration= ((dynamic)item).Attempt.Duration,
-                    Score= ((dynamic)item).Attempt.Score,
-                };
-                result.Add(newItem);
-            }
-            return result;
+            return await _unitOfWork.Report.top5wrong(examId);
         }
-        public List<RankVM> Analyst(Guid examId)
+
+        public async Task<List<RankVM>> Rank(Guid examId)
         {
-            var data = _unitOfWork.Report.rank(examId);
-            var result = new List<RankVM>();
-            foreach (var item in data)
-            {
-                RankVM newItem = new RankVM()
-                {
-                    Name = ((dynamic)item).User.UserName,
-                    Image = ((dynamic)item).User.Image,
-                    AttemptAt = ((dynamic)item).Attempt.AttemptAt,
-                    Duration = ((dynamic)item).Attempt.Duration,
-                    Score = ((dynamic)item).Attempt.Score,
-                };
-                result.Add(newItem);
-            }
-            return result;
+            var data =await _unitOfWork.Report.rank(examId);
+            return data;
+        }
+        public async Task<List<RankVM>> Analyst(Guid examId)
+        {
+            var data = await _unitOfWork.Report.analyst(examId);
+            return data;
         }
     }
 }
