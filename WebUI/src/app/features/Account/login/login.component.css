@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.left-panel {
+    width: 50%;
+    background-color: #69c9d0;
+    border-top-right-radius: 50px;
+}
+
+.right-panel {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 100px;
+}
+
+h1 {
+    margin-bottom: 40px;
+}
+
+form {
+    width: 100%;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group .icon {
+    position: absolute;
+    left: 10px;
+    width: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    height: 60px;
+}
+
+.input-group .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 45px 0 15px;
+    font-size: 18px;
+}
+
+.actions a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+}
+.actions div {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    height: 60px;
+}
+.google-signin-button {
+    display: inline-flex;
+    /* Important for alignment */
+    align-items: center;
+    /* Vertically center the logo and text */
+    justify-content: center;
+    /* Horizontally center content */
+    padding: 12px 166px;
+    /* Adjust padding as needed */
+    border-radius: 24px;
+    /* Ensure pill shape if not already */
+    font-size: 16px;
+    /* Adjust font size */
+    font-weight: 500;
+    /* Slightly bolder text */
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    cursor: pointer;
+    background-color: #1A73E8;
+    /* Google Blue */
+    color: white;
+    /* White text */
+}
+
+.google-signin-button:hover {
+    background-color: #1A73E8;
+    /* Darker blue on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Slightly stronger shadow on hover */
+}
+.btn.login {
+    background-color: #69c9d0;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.btn.google {
+    background-color: #ddd;
+    color: #555;
+}
+#buttonDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* Centers the Google button */
+    margin-bottom: 10px;
+    /* Adds some space between the buttons */
+    border-radius: 10px;
+}
+
