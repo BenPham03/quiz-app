@@ -1,7 +1,15 @@
-﻿using BLL.ViewModels;
+using BLL.ViewModels;
 using DAL.Data;
 using DAL.Helpers;
 using DAL.Models;
+using BLL.Services.EmailService;
+using BLL.ViewModels;
+using DAL.Data;
+using DAL.Helpers;
+using DAL.Models;
+using Google.Apis.Auth;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -20,13 +28,22 @@ namespace WebApi.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly DataDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly IEmailSender _emailSender;
 
-        public AuthenticationController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, DataDbContext context, IConfiguration configuration)
+        public AuthenticationController(UserManager<AppUser> userManager,
+                                 RoleManager<IdentityRole> roleManager,
+                                 DataDbContext context,
+                                 IConfiguration configuration,
+                                 SignInManager<AppUser> signInManager,
+                                 IEmailSender emailSender) // Add this
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _context = context;
             _configuration = configuration;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [HttpPost("register")]
@@ -49,6 +66,14 @@ namespace WebApi.Controllers
             if (result.Succeeded)
             {
                 return Created(nameof(Register), $"User {registerVM.Email} created!");
+                if (!await _roleManager.RoleExistsAsync(Role.User))
+                    await _roleManager.CreateAsync(new IdentityRole(Role.User));
+
+                if (await _roleManager.RoleExistsAsync(Role.User))
+                {
+                    await _userManager.AddToRoleAsync(newUser, Role.User);
+                }
+                return Created(nameof(Register), new { message = $"User {registerVM.Email} created!" });
             }
 
             var errors = string.Join(", ", result.Errors.Select(e => e.Description));
@@ -154,5 +179,72 @@ namespace WebApi.Controllers
             }
             return Unauthorized();
         }
+
+        //Google Authentication
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GoogleLogin([FromBody] string credencial)
+        {
+            var setting = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string> { _configuration["GoogleKeys:ClientId"] }
+            };
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(credencial, setting);
+
+            var user = await _userManager.FindByEmailAsync(payload.Email);
+            if (user != null)
+            {
+                var token = await GenerateToken(user);
+                return Ok(token);
+            }
+            else
+            {
+                var username = payload.Name.Replace(' ', '_');
+                var newUser = new AppUser
+                {
+                    UserName = username,
+                    Email = payload.Email,
+                    SecurityStamp = new Guid().ToString(),
+                };
+                var result = await _userManager.CreateAsync(newUser);
+                if (result.Succeeded)
+                {
+                    if (!await _roleManager.RoleExistsAsync(Role.User))
+                        await _roleManager.CreateAsync(new IdentityRole(Role.User));
+
+                    if (await _roleManager.RoleExistsAsync(Role.User))
+                    {
+                        await _userManager.AddToRoleAsync(newUser, Role.User);
+                    }
+                    var token = await GenerateToken(newUser);
+                    return Ok(token);
+                }
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("update-password")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordVM updatePasswordVM)
+        {
+            var user = await _userManager.FindByEmailAsync(updatePasswordVM.Email);
+            if (user != null)
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, token, updatePasswordVM.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    return Ok(new { message = "Mật khẩu đã được thay đổi thành công." });
+                }
+                else
+                {
+                    return BadRequest("Có lỗi xảy ra khi thay đổi mật khẩu.");
+                }
+
+            }
+            return BadRequest();
+
+        }
+
     }
 }
