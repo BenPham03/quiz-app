@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="left-panel"></div>
+    <div class="right-panel">
+        <h1>Login</h1>
+        <form #ngForm (ngSubmit)="onFormSubmit()">
+            <div class="input-group">
+                <span class="icon">🔖</span>
+                <input type="email" placeholder="Email" required [(ngModel)] = "model.Email" name="Email">
+            </div>
+            <div class="input-group">
+                <span class="icon">🔖</span>
+                <input type="password" placeholder="Password" required [(ngModel)] = "model.Password" name="Password">
+                <span class="icon toggle-password">👁️</span>
+            </div>
+            <div class="actions">
+                <a href="/register" onclick="">Create your account!</a>
+                <div (click)="forgotPasswordModal.openModal()">Quên mật khẩu?</div>
+            </div>
+            <button type="submit" class="btn login">Login</button>
+            <div id="buttonDiv">Google</div>
+        </form>
+    </div>
+</div>
+<app-forgot-password-modal #forgotPasswordModal></app-forgot-password-modal>

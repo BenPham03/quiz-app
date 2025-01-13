@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+<<<<<<< HEAD
+* {
+    /* font-size: 24px; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: all .3s linear;
+}
+
+body {
+    background-color: #d9d9d9;
+    margin: 24px;
+    margin-left: 0;
+    height: calc(100vh - 48px);
+}
+
+.logo {
+    width: 100%;
+    min-width: 150px;
+}
+=======
+>>>>>>> 8d4ab35077fd29093f53c5fa7eb6bc86003c1e80

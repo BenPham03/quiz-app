@@ -1,0 +1,44 @@
+# Node.js dependencies (Angular)
+webui/node_modules/
+webui/dist/
+webui/.angular/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled source (TypeScript)
+*.tsbuildinfo
+
+# Environment Files
+webui/.env
+*.env
+
+# .NET Core dependencies
+**/bin/
+**/obj/
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core specific
+**/appsettings.json
+**/appsettings.*.json
+**/wwwroot/
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
