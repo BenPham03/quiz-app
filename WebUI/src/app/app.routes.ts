@@ -3,6 +3,7 @@ import { ExampleComponent } from './features/example/example/example.component';
 import { exampleGuard } from './core/guards/example.guard';
 import { LoginComponent } from './features/Account/login/login.component';
 import { RegisterComponent } from './features/Account/register/register.component';
+import { ReportComponent } from './features/report/report/report.component';
 
 export const routes: Routes = [
     {path:"example",component:ExampleComponent,canActivate:[exampleGuard]},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent
-    }
+    },
+    {path:"report",component:ReportComponent}
 ];

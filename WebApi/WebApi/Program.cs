@@ -1,3 +1,4 @@
+using BLL.Services;
 using BLL.Services.Base;
 using DAL.Data;
 using DAL.Infratructure;
@@ -28,6 +29,8 @@ builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(con
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 
 // add versioning
@@ -165,6 +168,7 @@ app.UseCors(configurePolicy =>
 });
 app.UseSession();
 app.UseCookiePolicy();
+
 app.UseAuthentication();
 
 app.UseAuthorization();

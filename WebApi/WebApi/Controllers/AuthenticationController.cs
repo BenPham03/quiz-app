@@ -1,4 +1,4 @@
-﻿using BLL.Services.EmailService;
+using BLL.Services.EmailService;
 using BLL.ViewModels;
 using DAL.Data;
 using DAL.Helpers;
@@ -6,6 +6,10 @@ using DAL.Models;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
+using BLL.ViewModels;
+using DAL.Data;
+using DAL.Helpers;
+using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -68,7 +72,7 @@ namespace WebApi.Controllers
                 {
                     await _userManager.AddToRoleAsync(newUser, Role.User);
                 }
-                return Created(nameof(Register), new   {message = $"User {registerVM.Email} created!" });
+                return Created(nameof(Register), new { message = $"User {registerVM.Email} created!" });
             }
 
             var errors = string.Join(", ", result.Errors.Select(e => e.Description));
@@ -179,20 +183,20 @@ namespace WebApi.Controllers
         [HttpPost("google-login")]
         public async Task<IActionResult> GoogleLogin([FromBody] string credencial)
         {
-           var setting = new GoogleJsonWebSignature.ValidationSettings()
-           {
-               Audience = new List<string> { _configuration["GoogleKeys:ClientId"] }
-           };
+            var setting = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string> { _configuration["GoogleKeys:ClientId"] }
+            };
 
             var payload = await GoogleJsonWebSignature.ValidateAsync(credencial, setting);
 
             var user = await _userManager.FindByEmailAsync(payload.Email);
-            if(user != null)
+            if (user != null)
             {
                 var token = await GenerateToken(user);
                 return Ok(token);
             }
-            else 
+            else
             {
                 var username = payload.Name.Replace(' ', '_');
                 var newUser = new AppUser
@@ -202,7 +206,7 @@ namespace WebApi.Controllers
                     SecurityStamp = new Guid().ToString(),
                 };
                 var result = await _userManager.CreateAsync(newUser);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     if (!await _roleManager.RoleExistsAsync(Role.User))
                         await _roleManager.CreateAsync(new IdentityRole(Role.User));
@@ -222,7 +226,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordVM updatePasswordVM)
         {
             var user = await _userManager.FindByEmailAsync(updatePasswordVM.Email);
-            if(user != null)
+            if (user != null)
             {
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var result = await _userManager.ResetPasswordAsync(user, token, updatePasswordVM.NewPassword);
