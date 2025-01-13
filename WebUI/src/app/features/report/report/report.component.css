@@ -24,13 +24,13 @@
 }
 .container :nth-child(1),.container :nth-child(2),.container :nth-child(3){
     grid-column: span 2;
-    grid-row: span 2;
+    grid-row: span 1;
 }
 .container :nth-child(3){
     grid-row: span 6;
 }
 .container :nth-child(4){
-    grid-row: span 4;
+    grid-row: span 5;
     grid-column: span 4;
 }
 .filter>*{
@@ -45,6 +45,15 @@
 #exam{
     min-width: 110px;
     width: 60%;
+}
+.rank-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    height: 80px;
+    border-bottom: 1px solid #d9d9d9;
+    cursor:pointer;
 }
 
 @media (max-width: 1200px) {

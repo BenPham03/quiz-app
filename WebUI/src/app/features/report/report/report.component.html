@@ -3,11 +3,8 @@
 <div class="filter">
     <div>
         <label for="exam" style="width: fit-content;">Filter:</label>
-        <select name="exam" id="exam">
-            <option value="exam">Exam 1</option>
-            <option value="exam">Exam 1</option>
-            <option value="exam">Exam 1</option>
-            <option value="exam">Exam 1</option>
+        <select name="exam" id="exam" [(ngModel)]="idNow" (ngModelChange)="loadData()">
+            <option *ngFor="let item of QuizzList" [value]="item.id">{{item.title}}</option>
         </select>
     </div>
     <div>
@@ -22,14 +19,28 @@
 <div class="container">
     <div class="box">
         <p>Top 5 right</p>
+        <p style="font-size: 18px;" *ngFor="let item of Top5Right">{{item.questionContent}}</p>
     </div>
     <div class="box">
         <p>Top 5 wrong</p>
+        <p style="font-size: 18px;" *ngFor="let item of Top5Wrong">{{item.questionContent}}</p>
     </div>
     <div class="box">
         <p>Rank</p>
+        <div class="rank-item" *ngFor="let item of Ranks,let i=index">
+            <p>#{{i+1}}</p>
+            <img [src]="item.image ? '/favicon.ico':item.image" alt="" width="36px">
+            <div>
+                <p style="font-size: 18px;">{{item.userName}}</p>
+                <p style="font-size: 18px;">{{item.attemptAt | date:'dd/MM/yyyy HH:mm'}}</p>
+            </div>
+            <div>
+                <p style="font-size: 18px;text-align: end;">{{item.score}} %</p>
+                <p style="font-size: 18px;text-align: end;">{{formatToMinutesSeconds(item.duration)}}</p>
+            </div>
+        </div>
     </div>
     <div class="box">
-
+        <div id=""></div>
     </div>
 </div>
