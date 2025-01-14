@@ -1,8 +1,8 @@
 /* Tổng thể */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1000px auto;
+    margin: 100px auto;
+    padding: 10px;
   }
   
   /* Card hiển thị quiz */
@@ -18,6 +18,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px; /* Tăng padding cho card */
+    padding-right: 40px;
   }
   
   .card-body h5 {
@@ -105,11 +106,15 @@
     text-decoration: none;
     transition: all 0.3s ease;
   }
-  
+  .search-input {
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    padding-right:10rem ;
+    outline:#333;
+  }
   .pagination a:hover {
     background-color: #f8f9fa;
   }
-  
   .pagination .active a {
     background-color: #007bff;
     color: white;
@@ -121,7 +126,12 @@
     pointer-events: none;
     background-color: #f8f9fa;
   }
-  
+
+  .list-group-item.active {
+    background-color: #c983ec;
+    color: white;
+    border-color: #fbe1f9;
+  }
   /* Responsive */
   @media (max-width: 576px) {
     .card-body {
@@ -134,4 +144,12 @@
       width: 100%;
     }
   }
+  .container {
+    margin-top: 20px;
+  }
   
+  .row {
+    display:flex;
+    flex-wrap: nowrap; /* Giữ các cột nằm ngang */
+
+  }

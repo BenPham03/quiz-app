@@ -22,8 +22,7 @@ namespace BLL.ViewModels
         public DateTime LastUpdateAt { get; set; } = DateTime.Now;
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
-        [JsonIgnore]
-        public ICollection<Questions> Questions { get; set; } = new List<Questions>();
+        public List<QuestionsVM> Questions { get; set; }
 
         [JsonIgnore]
         public ICollection<Interactions> Interactions { get; set; } = new List<Interactions>();

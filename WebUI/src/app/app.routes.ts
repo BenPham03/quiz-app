@@ -15,5 +15,10 @@ export const routes: Routes = [
         path:"add-quizzes",
         component:AddQuizzesComponent,
         canActivate:[exampleGuard]
+    },
+    {
+        path:"edit-exam/:id",
+        component:AddQuizzesComponent,
+        canActivate:[exampleGuard]
     }
 ];

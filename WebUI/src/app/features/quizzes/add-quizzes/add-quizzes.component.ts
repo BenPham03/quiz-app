@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddQuizzesRequest, Question } from '../models/add-quizzes-request.model';
 import { QuizzesService } from '../services/quizzes.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-add-quizzes',
   imports: [FormsModule,CommonModule],
@@ -12,17 +12,21 @@ import { QuizzesService } from '../services/quizzes.service';
 }
 )
 export class AddQuizzesComponent {
+  examId!: string;
+  isExamEditing = false;
   model: AddQuizzesRequest;
-
   // Config object để xử lý trong modal
   config = {
     maxTime: 60, // thời gian làm bài tối đa (mặc định)
     allowRetry: false, // có cho phép làm lại hay không
     showAnswers: false, // có hiển thị đáp án sau khi làm hay không
   };
-  saveConfig() {
-    this.model.config = JSON.stringify(this.config);}
-  constructor(private quizzesService: QuizzesService) {
+  saveConfig() 
+  {
+    this.model.config = JSON.stringify(this.config);
+  }
+  constructor(private quizzesService: QuizzesService,private route: ActivatedRoute) 
+  {
     this.model = {
       title: '',
       description: '',
@@ -31,6 +35,21 @@ export class AddQuizzesComponent {
       questions: []
     };
     
+  }
+  ngOnInit() {
+    this.examId = this.route.snapshot.paramMap.get('id')!;
+    console.log('Exam ID:', this.examId); // Gọi API để lấy dữ liệu
+    if (this.examId) {
+      this.isEditing = true;
+      this.loadExamData(this.examId);
+      
+    }
+  }
+  loadExamData(id: string) {
+    this.quizzesService.getQuizById(id).subscribe((data) => {
+      this.model = data; // Gán dữ liệu lấy được vào model
+      this.config = data.config || this.config; // Nếu có config thì gán vào
+    });
   }
   addQuestion() {
     this.model.questions.push({
@@ -103,17 +122,19 @@ export class AddQuizzesComponent {
   // Lưu cấu hình vào trường config
 
   // Hàm xử lý submit form
-  onFormSubmit() { 
-    console.log('Submitting model:', JSON.stringify(this.config));
-    console.log('Submit Data: ', this )
-    this.quizzesService.addQuizzes(this.model)
-      .subscribe({
-        next: (response) => {
-          console.log("This is successful!");
-        },
-        error: (error) => {
-          console.error("Error occurred:", error);
-        }
+  onFormSubmit() {
+    if (this.isEditing) {
+      if (this.examId !== null) {
+        this.quizzesService.updateQuiz(this.examId, this.model).subscribe(() => {
+          alert('Exam updated successfully!');
+        });
+      } else {
+        alert('Invalid Exam ID!');
+      }    
+    } else {
+      this.quizzesService.addQuizzes(this.model).subscribe(() => {
+        alert('Exam created successfully!');
       });
+    }
   }
 }
