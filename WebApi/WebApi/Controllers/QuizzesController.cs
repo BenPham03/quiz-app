@@ -3,6 +3,7 @@ using DAL.Data;
 using DAL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers
 {
@@ -57,6 +58,51 @@ namespace WebApi.Controllers
 
             return Ok();
         }
+        [HttpGet("quizzes")]
+        public IActionResult GetQuizzes(int page = 1, int pageSize = 5)
+        {
+            var quizzes = dbContext.Quizzes
+                .Select(q => new
+                {
+                    q.Id,
+                    q.Title,
+                    q.Description,
+                    q.Subject,
+                    q.CreatedAt,
+                    q.LastUpdateAt,
+                    QuestionCount = dbContext.Questions.Count(ques => ques.Id == q.Id)
+                })
+                .OrderByDescending(q => q.CreatedAt) // Sắp xếp mới nhất
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var totalItems = dbContext.Quizzes.Count();
+            return Ok(new { data = quizzes, totalItems });
+        }
+        [HttpDelete("quizzes/{id}")]
+        public IActionResult DeleteQuiz(Guid id)
+        {
+            var quiz = dbContext.Quizzes.FirstOrDefault(q => q.Id == id);
+            if (quiz == null) return NotFound();
+
+            // Xóa tất cả câu hỏi liên quan
+            var questions = dbContext.Questions.Where(q => q.Id == id).ToList();
+            foreach (var question in questions)
+            {
+                // Xóa tất cả câu trả lời liên quan
+                var answers = dbContext.Answers.Where(a => a.QuestionId == question.Id).ToList();
+                dbContext.Answers.RemoveRange(answers);
+            }
+            dbContext.Questions.RemoveRange(questions);
+
+            // Xóa quiz
+            dbContext.Quizzes.Remove(quiz);
+            dbContext.SaveChanges();
+
+            return NoContent();
+        }
+
 
     }
 }
