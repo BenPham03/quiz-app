@@ -19,24 +19,24 @@ namespace BLL.Services
             return await _unitOfWork.Report.QuizzList();
         }
 
-        public async Task<List<Questions>> top5right(Guid examId)
+        public async Task<List<Questions>> top5right(Guid examId,DateTime from,DateTime to)
         {
-            return await _unitOfWork.Report.top5right(examId);
+            return await _unitOfWork.Report.top5right(examId,from,to);
         }
 
-        public async Task<List<Questions>> top5wrong(Guid examId)
+        public async Task<List<Questions>> top5wrong(Guid examId, DateTime from, DateTime to)
         {
-            return await _unitOfWork.Report.top5wrong(examId);
+            return await _unitOfWork.Report.top5wrong(examId, from, to);
         }
 
-        public async Task<List<RankVM>> Rank(Guid examId)
+        public async Task<List<RankVM>> Rank(Guid examId, DateTime from, DateTime to)
         {
-            var data =await _unitOfWork.Report.rank(examId);
+            var data =await _unitOfWork.Report.rank(examId, from, to);
             return data;
         }
-        public async Task<List<RankVM>> Analyst(Guid examId)
+        public async Task<List<RankVM>> Analyst(Guid examId, DateTime from, DateTime to)
         {
-            var data = await _unitOfWork.Report.analyst(examId);
+            var data = await _unitOfWork.Report.analyst(examId, from, to);
             return data;
         }
     }

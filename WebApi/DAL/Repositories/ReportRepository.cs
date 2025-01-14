@@ -17,83 +17,63 @@ namespace DAL.Repositories
             return await _dbContext.Quizzes.ToListAsync();
         }
 
-        public async Task<List<Questions>> top5right(Guid id)
+        public async Task<List<Questions>> top5right(Guid id,DateTime? from=null,DateTime? to=null)
         {
-            var quizz = await _dbContext.Quizzes
-                        .Include(q => q.Attempts)
-                            .ThenInclude(a => a.UserAnswers)
-                            .ThenInclude(ua => ua.Questions)
-                        .Include(q => q.Attempts)
-                            .ThenInclude(a => a.UserAnswers)
-                            .ThenInclude(ua => ua.Answers)
-                        .FirstOrDefaultAsync(q => q.Id == id);
-
-            if (quizz == null || quizz.Attempts == null || !quizz.Attempts.Any())
-            {
-                return new List<Questions>();
-            }
-
-            var result = quizz.Attempts
-                .Where(a => a.UserAnswers != null) // Lọc các Attempts có UserAnswers
-                .SelectMany(a => a.UserAnswers)
-                .Where(ua => ua.Questions != null && ua.Answers != null) // Lọc câu trả lời có Questions và Answers
+            // Nếu `from` hoặc `to` không có, thiết lập giá trị mặc định
+            to = to ==DateTime.MinValue ? DateTime.UtcNow : to;
+            Console.WriteLine(from + " " + to);
+            // Truy vấn trực tiếp từ database để tối ưu hóa
+            var result = await _dbContext.UserAnswers
+                .Where(ua => ua.Attempts.QuizzId == id // Lọc theo Quiz Id
+                            && ua.Attempts.AttemptAt >= from // Lọc thời gian bắt đầu (mặc định MinValue nếu không có)
+                            && ua.Attempts.AttemptAt <= to // Lọc thời gian kết thúc (mặc định MaxValue nếu không có)
+                            )
                 .GroupBy(ua => ua.Questions) // Nhóm theo câu hỏi
-                .Where(g => g.Key != null) // Đảm bảo nhóm có câu hỏi hợp lệ
                 .Select(g => new
                 {
-                    Question = g.Key, // Lấy câu hỏi từ nhóm
-                    Count = g.Count(ua => ua.Answers.IsCorrect) // Đếm số câu trả lời đúng
+                    Question = g.Key, // Câu hỏi
+                    CorrectCount =g.Count(ua=>ua.Answers.IsCorrect)  // Số lượng câu trả lời đúng
                 })
-                .OrderByDescending(q => q.Count) // Sắp xếp giảm dần theo số câu trả lời đúng
+                .OrderByDescending(q => q.CorrectCount) // Sắp xếp giảm dần theo số lượng đúng
                 .Take(5) // Lấy top 5
-                .Select(q => q.Question) // Lấy câu hỏi từ kết quả
-                .ToList();
+                .Select(q => q.Question) // Chỉ lấy câu hỏi
+                .ToListAsync();
 
             return result;
         }
 
-        public async Task<List<Questions>> top5wrong(Guid id)
+        public async Task<List<Questions>> top5wrong(Guid id, DateTime? from = null, DateTime? to = null)
         {
-            var quizz = await _dbContext.Quizzes
-                        .Include(q => q.Attempts)
-                            .ThenInclude(a => a.UserAnswers)
-                            .ThenInclude(ua => ua.Questions)
-                        .Include(q => q.Attempts)
-                            .ThenInclude(a => a.UserAnswers)
-                            .ThenInclude(ua => ua.Answers)
-                        .FirstOrDefaultAsync(q => q.Id == id);
-
-            if (quizz == null || quizz.Attempts == null || !quizz.Attempts.Any())
-            {
-                return new List<Questions>();
-            }
-
-            var result = quizz.Attempts
-                .Where(a => a.UserAnswers != null) 
-                .SelectMany(a => a.UserAnswers)
-                .Where(ua => ua.Questions != null && ua.Answers != null) 
+            to = to == DateTime.MinValue ? DateTime.UtcNow : to;
+            Console.WriteLine(from + " " + to);
+            var result = await _dbContext.UserAnswers
+                .Where(ua => ua.Attempts.QuizzId == id 
+                            && ua.Attempts.AttemptAt >= from 
+                            && ua.Attempts.AttemptAt <= to 
+                            )
                 .GroupBy(ua => ua.Questions) 
-                .Where(g => g.Key != null)
                 .Select(g => new
                 {
-                    Question = g.Key, // Lấy câu hỏi từ nhóm
-                    Count = g.Count(ua => !ua.Answers.IsCorrect)
+                    Question = g.Key, // Câu hỏi
+                    CorrectCount = g.Count(ua => ua.Answers.IsCorrect) 
                 })
-                .OrderByDescending(q => q.Count)
+                .OrderByDescending(q => q.CorrectCount) 
                 .Take(5) // Lấy top 5
-                .Select(q => q.Question) 
-                .ToList();
+                .Select(q => q.Question)
+                .ToListAsync();
 
             return result;
         }
 
-        public async Task<List<RankVM>> rank(Guid id)
+        public async Task<List<RankVM>> rank(Guid id, DateTime? from = null, DateTime? to = null)
         {
+            to = to == DateTime.MinValue ? DateTime.UtcNow : to;
             var quizz = await _dbContext.Quizzes
                         .Where(q => q.Id == id)
                         .Include(q => q.Attempts)
                             .ThenInclude(u => u.User)
                         .SelectMany(q=>q.Attempts)
+                        .Where(q=>q.AttemptAt>=from && q.AttemptAt<=to)
                         .Select(i => new RankVM
                         {
                             Image = i.User != null && i.User.Image != null ? i.User.Image: "DefaultImage.png",
@@ -107,13 +87,15 @@ namespace DAL.Repositories
             return quizz;
         }
 
-        public async Task<List<RankVM>> analyst(Guid id)
+        public async Task<List<RankVM>> analyst(Guid id, DateTime? from = null, DateTime? to = null)
         {
+            to = to == DateTime.MinValue ? DateTime.UtcNow : to;
             var quizz = await _dbContext.Quizzes
                         .Where(q => q.Id == id)
                         .Include(q => q.Attempts)
                             .ThenInclude(u => u.User)
                         .SelectMany(q => q.Attempts)
+                        .Where(q => q.AttemptAt >= from && q.AttemptAt <= to)
                         .Select(i => new RankVM
                         {
                             Image = i.User != null && i.User.Image != null ? i.User.Image : "DefaultImage.png",

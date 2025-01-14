@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Question, Quizz, Rank } from '../models/report';
 import { BASE_URL } from '../../../app.config';
 
@@ -14,19 +14,61 @@ export class ReportService {
     return this.http.get<Quizz[]>(BASE_URL+'Report/quizz-list')
   }
 
-  GetTop5Right(id:string):Observable<Question[]>{
-    return this.http.get<Question[]>(BASE_URL+'Report/top-5-right/'+id)
+  GetTop5Right(id:string,from?:Date,to?:Date):Observable<Question[]>{
+    let params = new HttpParams();
+    if (from) {
+      params = params.set('from',new Date(from).toISOString() );
+    }
+    if (to) {
+      params = params.set('to', new Date(to).toISOString());
+    }
+    return this.http.get<Question[]>(BASE_URL+'Report/top-5-right/'+id,{params})
   }
 
-  GetTop5Wrong(id:string):Observable<Question[]>{
-    return this.http.get<Question[]>(BASE_URL+'Report/top-5-wrong/'+id)
+  GetTop5Wrong(id:string,from?:Date,to?:Date):Observable<Question[]>{
+    let params = new HttpParams();
+    if (from) {
+      params = params.set('from',new Date(from).toISOString());
+    }
+    if (to) {
+      params = params.set('to',new Date(to).toISOString());
+    }
+    return this.http.get<Question[]>(BASE_URL+'Report/top-5-wrong/'+id,{params})
   }
 
-  GetRank(id:string):Observable<Rank[]>{
-    return this.http.get<Rank[]>(BASE_URL+'Report/rank/'+id)
+  GetRank(id:string,from?:Date,to?:Date):Observable<Rank[]>{
+    let params = new HttpParams();
+    if (from) {
+      params = params.set('from',new Date(from).toISOString());
+    }
+    if (to) {
+      params = params.set('to',new Date(to).toISOString());
+    }
+    return this.http.get<Rank[]>(BASE_URL+'Report/rank/'+id,{params}).pipe(
+      map(data => 
+        data.map(item => ({
+          ...item,
+          attemptAt: new Date(item.attemptAt) // Chuyển đổi attemptAt thành Date
+        }))
+      )
+    )
   }
 
-  GetAnalyst(id:string):Observable<Rank[]>{
-    return this.http.get<Rank[]>(BASE_URL+'Report/analyst/'+id)
+  GetAnalyst(id:string,from?:Date,to?:Date):Observable<Rank[]>{
+    let params = new HttpParams();
+    if (from) {
+      params = params.set('from', new Date(from).toISOString());
+    }
+    if (to) {
+      params = params.set('to', new Date(to).toISOString());
+    }
+    return this.http.get<Rank[]>(BASE_URL+'Report/analyst/'+id,{params}).pipe(
+      map(data => 
+        data.map(item => ({
+          ...item,
+          attemptAt: new Date(item.attemptAt) // Chuyển đổi attemptAt thành Date
+        }))
+      )
+    )
   }
 }

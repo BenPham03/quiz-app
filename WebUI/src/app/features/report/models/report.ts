@@ -4,7 +4,7 @@ export interface Quizz {
     description:string,
     config:string,
     status:boolean,
-    createAt:Date,
+    createdAt:Date,
     lastUpdateAt:Date
 }
 
@@ -12,8 +12,8 @@ export interface Question{
     id:string,
     questionContent:string,
     type:string,
-    createAt:Date,
-    updateAt:Date
+    createdAt:Date,
+    updatedAt:Date
 }
 
 export interface Rank{
