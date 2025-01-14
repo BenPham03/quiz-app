@@ -19,6 +19,5 @@ namespace BLL.ViewModels
         public string Subject { get; set; }
         [Required(ErrorMessage = "Question is required")]
         public Questions[] Questions { get; set; }
-
     }
 }

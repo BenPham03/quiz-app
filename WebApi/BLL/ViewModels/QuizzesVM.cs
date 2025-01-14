@@ -20,12 +20,11 @@ namespace BLL.ViewModels
         public bool Status { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime LastUpdateAt { get; set; } = DateTime.Now;
-
-
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
         [JsonIgnore]
         public ICollection<Questions> Questions { get; set; } = new List<Questions>();
+
         [JsonIgnore]
         public ICollection<Interactions> Interactions { get; set; } = new List<Interactions>();
         [JsonIgnore]
