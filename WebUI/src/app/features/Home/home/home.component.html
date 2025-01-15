@@ -1,0 +1,45 @@
+<app-nav></app-nav>
+<app-header></app-header>
+<div id="container">
+    <div id="highest-point"></div>
+    <div id="popular-quiz"></div>
+    <div id="chart"></div>
+    <div id="list-quiz" *ngFor = 'let quiz of quizzes'>
+        <div class="quiz-card">
+            <div class="quiz-avatar">
+                <img src="avatar-placeholder.png" alt="Avatar">
+            </div>
+            <div class="quiz-info">
+                <h3>{{quiz.title}}</h3>
+                <p>subject</p>
+                <p>65%</p>
+            </div>
+            <div class="quiz-actions">
+                <button class="retry-button">Retry</button>
+                <span class="favorite-icon">&#9825;</span>
+            </div>
+        </div>
+    </div>
+    <div id="quiz-done">
+        <div class="done-quiz-card">
+            <div class="image-placeholder"></div>
+            <div class="content">
+                <h3>Exam Name</h3>
+                <button class="try-button">Try</button>
+            </div>
+            <p style="font-size: 15px;">Subject</p>
+            <div class="action">
+                <p>This is description of this exam</p>
+                <div class="score">80</div>
+            </div>
+            <div class="footer">
+                <div class="avatars">
+                    <div class="avatar"><img src="avatar1.jpg" alt="Avatar"></div>
+                    <div class="avatar"><img src="avatar2.jpg" alt="Avatar"></div>
+                    <div class="avatar"><img src="avatar3.jpg" alt="Avatar"></div>
+                </div>
+                <div class="heart">♡</div>
+            </div>
+        </div>
+    </div>
+</div>

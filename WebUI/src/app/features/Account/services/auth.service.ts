@@ -57,8 +57,8 @@ export class AuthService {
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
       return this.http.post(`${Base_URL}/Authentication/update-password`, updatePasswordRequest,{headers})
     }
-  //   logout() {
-  //   this.socialAuthService.signOut();
-  //   this.isLoggedInSubject.next(false); // Đặt trạng thái đăng nhập thành false
-  // }
+    logout() {
+    this.cookieService.delete('token')
+    this.socialAuthService.signOut();
+  }
 }

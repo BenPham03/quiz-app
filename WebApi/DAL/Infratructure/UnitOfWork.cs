@@ -1,4 +1,5 @@
 ﻿using DAL.Data;
+using DAL.Interfaces;
 using DAL.Models;
 using DAL.Repositories;
 
@@ -16,11 +17,14 @@ namespace DAL.Infratructure
         //public CategoryRepository Category => _category ?? new CategoryRepository(_dbContext);
         public ReportRepository Report => _report ?? new ReportRepository(_dbContext);
 
+        public IQuizRepository Quiz { get; private set; }
+
         //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
         {
             _dbContext = dbContext;
+            Quiz = new QuizRepository(_dbContext);
         }
 
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class

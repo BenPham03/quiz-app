@@ -1,4 +1,5 @@
 ﻿using DAL.Data;
+using DAL.Interfaces;
 using DAL.Repositories;
 
 namespace DAL.Infratructure
@@ -10,6 +11,7 @@ namespace DAL.Infratructure
                 //CategoryRepository Category { get; }
                 ReportRepository Report { get; }
                 //ProductRepository Product { get; }
+                IQuizRepository Quiz { get; }
 
                 GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
 

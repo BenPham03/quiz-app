@@ -13,8 +13,6 @@ namespace DAL.Models
         public bool Status { get; set; } = false;
         public DateTime CreatedAt { get; set; }= DateTime.Now;
         public DateTime LastUpdateAt {  get; set; }= DateTime.Now;
-
-
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
         [JsonIgnore]

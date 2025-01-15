@@ -15,6 +15,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Newtonsoft.Json;
 using BLL.Services.EmailService;
+using DAL.Interfaces;
+using DAL.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,8 +31,10 @@ builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(con
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddScoped<ReportService>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<QuizService>();
+builder.Services.AddScoped<IQuizRepository, QuizRepository>(); 
 builder.Services.AddControllers();
 
 // add versioning
@@ -119,35 +123,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
-//Configuration login by google
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-})
-.AddCookie()
-.AddGoogle(options =>
-{
-    options.ClientId = builder.Configuration["GoogleKeys:ClientId"];
-    options.ClientSecret = builder.Configuration["GoogleKeys:ClientSecret"];
-    options.Scope.Add("email");
-    options.CallbackPath = new PathString("/api/v1/Authentication/google-callback");
-});
-
-builder.Services.AddDistributedMemoryCache();
-
-builder.Services.AddSession(options =>
-{
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Ensure session persistence
-});
-builder.Services.Configure<CookiePolicyOptions>(options =>
-{
-    options.MinimumSameSitePolicy = SameSiteMode.Lax;
-});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -157,17 +132,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 
 app.UseCors(configurePolicy =>
 {
-    configurePolicy.WithOrigins("http://localhost:4200");
+    configurePolicy.WithOrigins(["http://localhost:4200", "http://localhost:7282"]);
     configurePolicy.AllowAnyHeader();
     configurePolicy.AllowAnyMethod();
-    configurePolicy.AllowAnyOrigin();
+    configurePolicy.AllowCredentials();
 });
-app.UseSession();
-app.UseCookiePolicy();
+app.UseHttpsRedirection();
+
 
 app.UseAuthentication();
 

@@ -14,10 +14,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-root',
   imports: [RouterOutlet, SocialLoginModule, FormsModule,
   GoogleSigninButtonModule,GoogleSigninButtonModule],
-
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
