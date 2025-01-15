@@ -1,0 +1,60 @@
+<app-header-admin></app-header-admin>
+<div class="container">
+    <div class="box" id="online">
+        <p>{{onlineCount}}</p>
+        <p>Online</p>
+    </div>
+    <div class="box" id="email">
+        <input type="text" placeholder="Write an announce to all user!">
+        <div class="btn"><i class="fa-regular fa-paper-plane"></i></div>
+    </div>
+    <div class="box" id="newuser">
+        <p>{{newCount}}</p>
+        <p>New Users</p>
+    </div>
+    <div class="box" id="rankuser">
+        <p>Rank</p>
+        <!-- <div class="rank-item" *ngFor="let item of Ranks,let i=index">
+            <p>#{{i+1}}</p>
+            <img [src]="item.image ? '/favicon.ico':item.image" alt="" width="36px">
+            <div>
+                <p style="font-size: 18px;"></p>
+                <p style="font-size: 18px;"></p>
+            </div>
+            <div>
+                <p style="font-size: 18px;text-align: end;"></p>
+                <p style="font-size: 18px;text-align: end;"></p>
+            </div>
+        </div> -->
+    </div>
+    <div class="box" id="user-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Avatar</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Exam Count</th>
+                    <th>Exam Saved</th>
+                    <th>Exam Liked</th>
+                    <th>Exam Done</th>
+                    <th>TimeLine</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userList">
+                    <td><img [src]="item.image ? '/favicon.ico':item.image" alt="" width="36px"></td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.examCount}}</td>
+                    <td>{{item.examSave}}</td>
+                    <td>{{item.examLiked}}</td>
+                    <td>{{item.examDone}}</td>
+                    <td>line</td>
+                    <td><i class="fa-solid fa-trash"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -8,13 +8,12 @@ namespace DAL.Infratructure
     {
         private readonly DataDbContext _dbContext;
         private readonly ReportRepository _report;
-        //private readonly ProductRepository _product;
+        private readonly AdminRepository _admin;
 
         public DataDbContext Context => _dbContext;
 
         public ReportRepository Report => _report ?? new ReportRepository(_dbContext);
-
-        //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
+        public AdminRepository Admin=> _admin ?? new AdminRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
         {

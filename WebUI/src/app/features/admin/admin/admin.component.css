@@ -1,0 +1,53 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(4,1fr);
+    border-radius: 24px;
+    width: calc(100% - 24px);
+    margin-left: 24px;
+    height: calc(100% - 96px);
+    gap:12px;
+}
+.box{
+    background-color: white;
+    border-radius: 18px;
+    padding:12px;
+}
+#online,#newuser{
+    grid-column: span 1;
+}
+#email{
+    grid-column: span 2;
+}
+#rankuser{
+    grid-column: span 1;
+    grid-row: span 4;
+}
+#user-table{
+    grid-row: span 3;
+    grid-column: span 4;
+}
+@media (max-width:1200px) {
+    #rankuser{
+        display: none;
+    }
+    .container{
+        grid-template-columns: repeat(4,1fr);
+    }
+}
+@media (max-width: 768px){
+    .container{
+        grid-template-columns: repeat(2,1fr);
+    }
+    #email{
+        grid-area: 2 / 1 / 2 / span 2;
+    }
+    #rankuser{
+        display: none;
+        grid-column: span 0;
+    }
+    #user-table{
+        grid-row: span 2;
+        grid-column: span 2;
+    }
+}
