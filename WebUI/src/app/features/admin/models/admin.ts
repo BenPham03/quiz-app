@@ -1,10 +1,10 @@
 export interface User {
     id:number,
     image:string,
-    email:string,
-    username:string,
+    gmail:string,
+    userName:string,
     examCount:number,
-    examSave:number,
+    examSaved:number,
     examLiked:number,
     examDone:number,
     timeLine:JSON

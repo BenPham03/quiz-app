@@ -19,7 +19,7 @@ namespace DAL.Repositories
         public async Task<List<UserVM>> GetUserList()
         {
             var userRole = await _dbContext.Roles
-                .Where(r => r.Name == "User")
+                .Where(r => r.Name == "Admin")
                 .Select(r => r.Id)
                 .FirstOrDefaultAsync();
 
@@ -27,12 +27,13 @@ namespace DAL.Repositories
                 return new List<UserVM>();
 
             var result = await _dbContext.Users
-                .Where(u => _dbContext.UserRoles.Any(ur => ur.UserId == u.Id && ur.RoleId == userRole))
+                .Where(u => _dbContext.UserRoles.Any(ur => ur.UserId != u.Id))
                 .Select(u => new UserVM
                 {
                     Id = Guid.Parse(u.Id),
                     UserName = u.UserName,
                     Gmail = u.Email,
+                    Image=u.Image,
                     TimeLine = u.Timeline,
                     ExamCount = _dbContext.Quizzes.Count(q => q.UserId == u.Id),
                     ExamSaved = _dbContext.Interactions.Count(i => i.UserId == u.Id && i.QuizzId != null && i.Type == InteractType.Save), 

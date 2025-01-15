@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public string UserName {  get; set; }
+        public string Image { get; set; }
         public string Gmail {  get; set; }
         public string TimeLine {  get; set; }
         public int ExamCount { get; set; }

@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
     this.service.getUserList().subscribe({
       next: (data: User[]) => {
         this.userList = data
+        console.log(data)
       },
       error: (err) => {
         console.log(err)

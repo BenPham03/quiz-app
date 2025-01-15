@@ -5,7 +5,7 @@
         <p>Online</p>
     </div>
     <div class="box" id="email">
-        <input type="text" placeholder="Write an announce to all user!">
+        <textarea >Write an announce to all user!</textarea>
         <div class="btn"><i class="fa-regular fa-paper-plane"></i></div>
     </div>
     <div class="box" id="newuser">
@@ -14,18 +14,14 @@
     </div>
     <div class="box" id="rankuser">
         <p>Rank</p>
-        <!-- <div class="rank-item" *ngFor="let item of Ranks,let i=index">
+        <div class="rank-item" *ngFor="let item of userList,let i=index">
             <p>#{{i+1}}</p>
             <img [src]="item.image ? '/favicon.ico':item.image" alt="" width="36px">
             <div>
-                <p style="font-size: 18px;"></p>
-                <p style="font-size: 18px;"></p>
+                <p style="font-size: 18px;">{{item.userName}}</p>
+                <p style="font-size: 18px;">{{item.gmail}}</p>
             </div>
-            <div>
-                <p style="font-size: 18px;text-align: end;"></p>
-                <p style="font-size: 18px;text-align: end;"></p>
-            </div>
-        </div> -->
+        </div>
     </div>
     <div class="box" id="user-table">
         <table>
@@ -44,11 +40,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let item of userList">
-                    <td><img [src]="item.image ? '/favicon.ico':item.image" alt="" width="36px"></td>
-                    <td>{{item.username}}</td>
-                    <td>{{item.email}}</td>
+                    <td><img [src]="item.image ? item.image:'/favicon.ico'" alt="" width="36px"></td>
+                    <td>{{item.userName}}</td>
+                    <td>{{item.gmail}}</td>
                     <td>{{item.examCount}}</td>
-                    <td>{{item.examSave}}</td>
+                    <td>{{item.examSaved}}</td>
                     <td>{{item.examLiked}}</td>
                     <td>{{item.examDone}}</td>
                     <td>line</td>

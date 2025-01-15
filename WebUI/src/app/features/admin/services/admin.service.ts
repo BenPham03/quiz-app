@@ -12,10 +12,10 @@ export class AdminService {
   constructor(private http:HttpClient) { }
 
   getUserList():Observable<User[]>{
-    return this.http.get<User[]>(BASE_URL+"Admin/get-user-list");
+    return this.http.get<User[]>(BASE_URL+"Admin/get-list");
   }
   getUserOnlineCount():Observable<number>{
-    return this.http.get<number>(BASE_URL+'Admin/get-online-user-count');
+    return this.http.get<number>(BASE_URL+'Admin/get-user-online-count');
   }
   getNewUserCount():Observable<number>{
     return this.http.get<number>(BASE_URL+"Admin/get-new-user-count");

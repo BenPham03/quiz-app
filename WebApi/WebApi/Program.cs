@@ -24,6 +24,7 @@ builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(con
 //builder.Services.AddScoped<IBaseService<Category>, CategoryService>();
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
 builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<AdminService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();
 
