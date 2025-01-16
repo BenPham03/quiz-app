@@ -64,5 +64,15 @@ namespace DAL.Repositories
 
             return users;
         }
+
+        public async Task<bool> DeleteUser(string id)
+        {
+            var user=await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
+            if (user != null){
+                _dbContext.Users.Remove(user);
+                return true;
+            }
+            return false;
+        }
     }
 }

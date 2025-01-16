@@ -1,5 +1,5 @@
 export interface User {
-    id:number,
+    id:string,
     image:string,
     gmail:string,
     userName:string,

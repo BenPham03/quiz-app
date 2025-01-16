@@ -20,4 +20,10 @@ export class AdminService {
   getNewUserCount():Observable<number>{
     return this.http.get<number>(BASE_URL+"Admin/get-new-user-count");
   }
+  deleteUser(id:string):Observable<boolean>{
+    return this.http.delete<boolean>(BASE_URL+'Admin/delete-user/'+id)
+  }
+  sendMail(message:string):Observable<void>{
+    return this.http.post<void>(BASE_URL+'Admin/send-mail/',{message})
+  }
 }

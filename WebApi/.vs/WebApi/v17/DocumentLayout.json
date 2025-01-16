@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "E:\\Angular\\quiz-app\\WebApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|e:\\angular\\quiz-app\\webapi\\webapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|e:\\angular\\quiz-app\\webapi\\bll\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|e:\\angular\\quiz-app\\webapi\\bll\\viewmodels\\mailvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\viewmodels\\mailvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\repositories\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\repositories\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\infratructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\infratructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\uservm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|e:\\angular\\quiz-app\\webapi\\dal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|e:\\angular\\quiz-app\\webapi\\webapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|e:\\angular\\quiz-app\\webapi\\bll\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +38,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MailVM.cs",
+              "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\BLL\\ViewModels\\MailVM.cs",
+              "RelativeDocumentMoniker": "BLL\\ViewModels\\MailVM.cs",
+              "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\BLL\\ViewModels\\MailVM.cs",
+              "RelativeToolTip": "BLL\\ViewModels\\MailVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T08:20:29.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Infratructure\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "DAL\\Infratructure\\UnitOfWork.cs",
+              "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Infratructure\\UnitOfWork.cs",
+              "RelativeToolTip": "DAL\\Infratructure\\UnitOfWork.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAUwDwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T07:18:47.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AppUser.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\AppUser.cs",
@@ -42,36 +75,37 @@
               "RelativeToolTip": "DAL\\Models\\AppUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T04:08:20.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T04:08:20.901Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "AdminController.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\WebApi\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "WebApi\\Controllers\\AdminController.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\WebApi\\Controllers\\AdminController.cs",
               "RelativeToolTip": "WebApi\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAYwCAAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAqwC8AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T03:44:40.117Z"
+              "WhenOpened": "2025-01-15T03:44:40.117Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "AdminService.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\BLL\\Services\\AdminService.cs",
               "RelativeDocumentMoniker": "BLL\\Services\\AdminService.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\BLL\\Services\\AdminService.cs",
               "RelativeToolTip": "BLL\\Services\\AdminService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAA6wEEAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T03:39:18.003Z"
+              "WhenOpened": "2025-01-15T03:39:18.003Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "UserVM.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Models\\UserVM.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\UserVM.cs",
@@ -79,21 +113,19 @@
               "RelativeToolTip": "DAL\\Models\\UserVM.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T03:34:24.092Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T03:34:24.092Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "AdminRepository.cs",
               "DocumentMoniker": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Repositories\\AdminRepository.cs",
               "RelativeDocumentMoniker": "DAL\\Repositories\\AdminRepository.cs",
               "ToolTip": "E:\\Angular\\quiz-app\\WebApi\\DAL\\Repositories\\AdminRepository.cs",
               "RelativeToolTip": "DAL\\Repositories\\AdminRepository.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAgwCMAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAQwEoAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T03:28:31.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T03:28:31.182Z"
             }
           ]
         }

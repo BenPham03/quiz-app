@@ -57,7 +57,7 @@ namespace DAL.Infratructure
 
         GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
         {
-            throw new NotImplementedException();
+            return new GenericRepository<TEntity>(_dbContext);
         }
     }
 }
