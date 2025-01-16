@@ -34,7 +34,18 @@ builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
 builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<QuizService>();
+builder.Services.AddScoped<QuestionService>();
+builder.Services.AddScoped<AnswerService>();
+builder.Services.AddScoped<AttemptService>();
+builder.Services.AddScoped<UserAnswerService>();
+builder.Services.AddScoped<DoExamService>();
+
+
 builder.Services.AddScoped<IQuizRepository, QuizRepository>(); 
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>(); 
+builder.Services.AddScoped<IAttemptRepository, AttemptRepository>(); 
+builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
+builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 builder.Services.AddControllers();
 
 // add versioning
@@ -123,6 +134,12 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

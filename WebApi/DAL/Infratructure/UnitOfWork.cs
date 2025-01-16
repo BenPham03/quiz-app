@@ -19,12 +19,24 @@ namespace DAL.Infratructure
 
         public IQuizRepository Quiz { get; private set; }
 
+        public IQuestionRepository Question { get; private set; }
+
+        public IAnswerRepository Answer { get; private set; }
+
+        public IAttemptRepository Attempt { get; private set; }
+
+        public IUserAnswerRepository UserAnswer { get; private set; }
+
         //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
         {
             _dbContext = dbContext;
             Quiz = new QuizRepository(_dbContext);
+            Question = new QuestionRepository(_dbContext);
+            Answer = new AnswerRepository(_dbContext);
+            Attempt = new AttemptRepository(_dbContext);
+            UserAnswer = new UserAnswerRepository(_dbContext);
         }
 
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class
@@ -62,9 +74,9 @@ namespace DAL.Infratructure
             _dbContext.Dispose();
         }
 
-        GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
-        {
-            throw new NotImplementedException();
-        }
+        //GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

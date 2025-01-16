@@ -12,8 +12,12 @@ namespace DAL.Infratructure
                 ReportRepository Report { get; }
                 //ProductRepository Product { get; }
                 IQuizRepository Quiz { get; }
+                IQuestionRepository Question { get; }
+                IAnswerRepository Answer { get; }
+                IAttemptRepository Attempt { get; }
+                IUserAnswerRepository UserAnswer { get; }
 
-                GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
+        GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
 
                 int SaveChanges();
                 Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

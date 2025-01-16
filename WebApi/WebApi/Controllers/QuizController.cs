@@ -27,7 +27,6 @@ namespace WebApi.Controllers
             _userManager = userManager;
             _quizService = quizService;
         }
-        [Authorize]
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
