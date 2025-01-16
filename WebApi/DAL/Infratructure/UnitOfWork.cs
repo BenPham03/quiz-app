@@ -1,29 +1,37 @@
 ﻿using DAL.Data;
 using DAL.Models;
 using DAL.Repositories;
+using System.Collections.Concurrent;
 
 namespace DAL.Infratructure
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataDbContext _dbContext;
-        //private readonly CategoryRepository _category;
-        //private readonly ProductRepository _product;
 
+        // Sử dụng ConcurrentDictionary để quản lý các repository chung
+        private readonly ConcurrentDictionary<Type, object> _repositories = new();
         public DataDbContext Context => _dbContext;
 
-        //public CategoryRepository Category => _category ?? new CategoryRepository(_dbContext);
-
-        //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
+        public QuizzesRepository Quizzes => new QuizzesRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
+
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class
         {
-            return new GenericRepository<TEntity>(_dbContext);
+            // Kiểm tra nếu repository đã tồn tại
+            if (!_repositories.ContainsKey(typeof(TEntity)))
+            {
+                var repositoryInstance = new GenericRepository<TEntity>(_dbContext);
+                _repositories[typeof(TEntity)] = repositoryInstance;
+            }
+
+            // Trả về repository từ dictionary
+            return (GenericRepository<TEntity>)_repositories[typeof(TEntity)];
         }
 
         public int SaveChanges()
@@ -56,9 +64,10 @@ namespace DAL.Infratructure
             _dbContext.Dispose();
         }
 
+        // Sửa lại phương thức giao diện
         GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
         {
-            throw new NotImplementedException();
+            return GenericRepository<TEntity>();
         }
     }
 }

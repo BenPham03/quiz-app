@@ -1,10 +1,7 @@
-﻿using BLL.ViewModels;
-using DAL.Data;
+﻿using BLL.Services;
+using BLL.ViewModels;
 using DAL.Models;
-using DAL.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers
 {
@@ -12,173 +9,167 @@ namespace WebApi.Controllers
     [ApiController]
     public class QuizzesController : ControllerBase
     {
-        private readonly DataDbContext dbContext;
+        private readonly QuizzesService _quizzesService;
 
-        public QuizzesController(DataDbContext dbContext)
+        public QuizzesController(QuizzesService quizzesService)
         {
-            this.dbContext = dbContext;
+            _quizzesService = quizzesService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateQuizzes(addQuizzesVM addquizzesVM)
+        public async Task<IActionResult> CreateQuizzes([FromBody] addQuizzesVM addQuizzesVM)
         {
-            var quizzes = new Quizzes
+            if (!ModelState.IsValid)
             {
-                Title = addquizzesVM.Title,
-                Config = addquizzesVM.Config,
-                Description = addquizzesVM.Description,
-                Subject = addquizzesVM.Subject,
-                Questions = addquizzesVM.Questions.Select(q => new Questions
-                {
-                    QuestionContent = q.QuestionContent,
-                    QuestionType = (QuestionType)q.QuestionType,
-                    Answers = q.Answers.Select(a => new Answers
-                    {
-                        AnswerContent = a.AnswerContent,
-                        IsCorrect = a.IsCorrect
-                    }).ToList()
-                }).ToList()
-            };
+                return BadRequest(ModelState);
+            }
 
-            await dbContext.Quizzes.AddAsync(quizzes);
-            await dbContext.SaveChangesAsync();
-
-            var response = new QuizzesVM
+            if (addQuizzesVM == null)
             {
-                Id = quizzes.Id,
-                Title = quizzes.Title,
-                Description = quizzes.Description,
-                Subject = quizzes.Subject,
-                Config = quizzes.Config,
-                CreatedAt = quizzes.CreatedAt,
-                LastUpdateAt = quizzes.LastUpdateAt,
-                UserId = quizzes.UserId,
-                User = quizzes.User,
-                Questions = quizzes.Questions.Select(q => new QuestionsVM
-                {
-                    Id = q.Id,
-                    QuestionContent = q.QuestionContent,
-                    QuestionType = (int)q.QuestionType,
-                    Answers = q.Answers.Select(a => new AnswersVM
-                    {
-                        AnswerContent = a.AnswerContent,
-                        IsCorrect = a.IsCorrect
-                    }).ToList()
-                }).ToList()
-            };
+                return BadRequest("Invalid data.");
+            }
 
-            return Ok(response);
+            try
+            {
+                var quizzes = new Quizzes
+                {
+                    Title = addQuizzesVM.Title,
+                    Config = addQuizzesVM.Config,
+                    Description = addQuizzesVM.Description,
+                    Subject = addQuizzesVM.Subject,
+                    Questions = addQuizzesVM.Questions.Select(q => new Questions
+                    {
+                        QuestionContent = q.QuestionContent,
+                        QuestionType = (QuestionType)q.QuestionType,
+                        Answers = q.Answers.Select(a => new Answers
+                        {
+                            AnswerContent = a.AnswerContent,
+                            IsCorrect = a.IsCorrect
+                        }).ToList()
+                    }).ToList()
+                };
+
+                var result = await _quizzesService.AddAsync(quizzes);
+                if (result > 0)
+                {
+                    return Ok(new { message = "Quiz created successfully." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+
+            return StatusCode(500, "Failed to create quiz.");
         }
-
         [HttpGet]
-        public IActionResult GetQuizzes(int page = 1, int pageSize = 5)
+        public async Task<IActionResult> GetQuizzesAsync(int page = 1, int pageSize = 5)
         {
-            var quizzes = dbContext.Quizzes
-                .Select(q => new
+            // Include cả Questions và Answers
+            var quizzes = await _quizzesService.GetAsync(includeProperties: "Questions,Questions.Answers", pageIndex: page, pageSize: pageSize);
+
+            if (quizzes == null || !quizzes.Items.Any())
+            {
+                return NotFound(new { message = "No quizzes found." });
+            }
+
+            return Ok(new
+            {
+                data = quizzes.Items.Select(q => new
                 {
                     q.Id,
                     q.Title,
                     q.Description,
                     q.Subject,
+                    q.Config,
+                    q.Status,
+                    Questions = q.Questions.Select(qs => new
+                    {
+                        qs.Id,
+                        qs.QuestionContent,
+                        qs.QuestionType,
+                        Answers = qs.Answers.Select(ans => new
+                        {
+                            ans.Id,
+                            ans.AnswerContent,
+                            ans.IsCorrect
+                        })
+                    }),
                     q.CreatedAt,
                     q.LastUpdateAt,
-                    QuestionCount = dbContext.Questions.Count(ques => ques.Id == q.Id)
-                })
-                .OrderByDescending(q => q.CreatedAt) // Sắp xếp mới nhất
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            var totalItems = dbContext.Quizzes.Count();
-            return Ok(new { data = quizzes, totalItems });
+                    q.UserId
+                }),
+                totalItems = quizzes.TotalCount
+            });
         }
+
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        public async Task<IActionResult> GetByIdAsync(Guid id)
         {
-            var quiz = await dbContext.Quizzes
-                .Include(q => q.Questions)
-                .ThenInclude(q => q.Answers)
-                .FirstOrDefaultAsync(q => q.Id == id);
-
+            var quiz = await _quizzesService.GetByIdAsync(id);
             if (quiz == null)
             {
-                return NotFound(new { message = "Quiz not found" });
+                return NotFound(new { message = "Quiz not found." });
             }
 
-            var response = new QuizzesVM
+            return Ok(new
             {
-                Id = quiz.Id,
-                Title = quiz.Title,
-                Description = quiz.Description,
-                Subject = quiz.Subject,
-                Config = quiz.Config,
-                CreatedAt = quiz.CreatedAt,
-                LastUpdateAt = quiz.LastUpdateAt,
-                Questions = quiz.Questions.Select(q => new QuestionsVM
+                quiz.Id,
+                quiz.Title,
+                quiz.Description,
+                quiz.Subject,
+                quiz.Config,
+                quiz.Status,
+                Questions = quiz.Questions.Select(q => new
                 {
-                    Id = q.Id,
-                    QuestionContent = q.QuestionContent,
-                    QuestionType = (int)q.QuestionType,
-                    Answers = q.Answers.Select(a => new AnswersVM
+                    q.Id,
+                    q.QuestionContent,
+                    q.QuestionType,
+                    Answers = q.Answers.Select(a => new
                     {
-                        Id = a.Id,
-                        AnswerContent = a.AnswerContent,
-                        IsCorrect = a.IsCorrect
-                    }).ToList()
-                }).ToList()
-            };
-
-            return Ok(response);
+                        a.Id,
+                        a.AnswerContent,
+                        a.IsCorrect
+                    })
+                }),
+                quiz.CreatedAt,
+                quiz.LastUpdateAt,
+                quiz.UserId
+            });
         }
 
+
         [HttpDelete("{id}")]
-        public IActionResult DeleteQuiz(Guid id)
+        public async Task<IActionResult> DeleteQuiz(Guid id)
         {
-            var quiz = dbContext.Quizzes
-                .Include(q => q.Questions)
-                .ThenInclude(q => q.Answers)
-                .FirstOrDefault(q => q.Id == id);
+            var result = await _quizzesService.DeleteAsync(id);
+            if (result)
+            {
+                return NoContent();
+            }
 
-            if (quiz == null) return NotFound();
-
-            // Xóa tất cả câu hỏi và câu trả lời liên quan
-            dbContext.Answers.RemoveRange(quiz.Questions.SelectMany(q => q.Answers));
-            dbContext.Questions.RemoveRange(quiz.Questions);
-
-            // Xóa quiz
-            dbContext.Quizzes.Remove(quiz);
-            dbContext.SaveChanges();
-
-            return NoContent();
+            return NotFound(new { message = "Quiz not found or failed to delete." });
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuiz(Guid id, updateQuizzesVM updateQuizzesVM)
         {
-            // Tìm quiz cần cập nhật
-            var quiz = await dbContext.Quizzes
-                .Include(q => q.Questions)
-                .ThenInclude(q => q.Answers)
-                .FirstOrDefaultAsync(q => q.Id == id);
-
+            var quiz = await _quizzesService.GetByIdAsync(id);
             if (quiz == null)
             {
-                return NotFound(new { message = "Quiz not found" });
+                return NotFound(new { message = "Quiz not found." });
             }
 
-            // Cập nhật các thuộc tính của quiz
+            // Update quiz properties
             quiz.Title = updateQuizzesVM.Title;
             quiz.Description = updateQuizzesVM.Description;
             quiz.Subject = updateQuizzesVM.Subject;
             quiz.Config = updateQuizzesVM.Config;
             quiz.LastUpdateAt = DateTime.UtcNow;
 
-            // Xóa các câu hỏi và câu trả lời cũ
-            dbContext.Answers.RemoveRange(quiz.Questions.SelectMany(q => q.Answers));
-            dbContext.Questions.RemoveRange(quiz.Questions);
-
-            // Thêm câu hỏi và câu trả lời mới
+            // Update questions and answers
+            quiz.Questions.Clear();
             quiz.Questions = updateQuizzesVM.Questions.Select(q => new Questions
             {
                 QuestionContent = q.QuestionContent,
@@ -190,36 +181,13 @@ namespace WebApi.Controllers
                 }).ToList()
             }).ToList();
 
-            // Lưu thay đổi vào cơ sở dữ liệu
-            await dbContext.SaveChangesAsync();
-
-            // Chuẩn bị phản hồi
-            var response = new QuizzesVM
+            var result = await _quizzesService.UpdateAsync(quiz);
+            if (result)
             {
-                Id = quiz.Id,
-                Title = quiz.Title,
-                Description = quiz.Description,
-                Subject = quiz.Subject,
-                Config = quiz.Config,
-                CreatedAt = quiz.CreatedAt,
-                LastUpdateAt = quiz.LastUpdateAt,
-                Questions = quiz.Questions.Select(q => new QuestionsVM
-                {
-                    Id = q.Id,
-                    QuestionContent = q.QuestionContent,
-                    QuestionType = (int)q.QuestionType,
-                    Answers = q.Answers.Select(a => new AnswersVM
-                    {
-                        Id = a.Id,
-                        AnswerContent = a.AnswerContent,
-                        IsCorrect = a.IsCorrect
-                    }).ToList()
-                }).ToList()
-            };
+                return Ok(new { message = "Quiz updated successfully." });
+            }
 
-            return Ok(response);
+            return StatusCode(500, "Failed to update quiz.");
         }
-
     }
-
 }

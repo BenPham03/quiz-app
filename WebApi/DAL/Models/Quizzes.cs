@@ -12,13 +12,12 @@ namespace DAL.Models
         public string Subject { get; set; }
         public string Config {  get; set; }
         public bool Status { get; set; } = false;
-        public List<Questions> Questions { get; set; } = new List<Questions>();
+        public ICollection<Questions> Questions { get; set; } = new List<Questions>();
         public DateTime CreatedAt { get; set; }= DateTime.Now;
         public DateTime LastUpdateAt {  get; set; }= DateTime.Now;
-
-
         public string? UserId { get; set; }
         public AppUser? User { get; set; }
+
         [JsonIgnore]
         public ICollection<Interactions> Interactions { get; set; } = new List<Interactions>();
         [JsonIgnore]

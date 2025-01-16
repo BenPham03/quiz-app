@@ -7,7 +7,7 @@ namespace DAL.Infratructure
     {
         DataDbContext Context { get; }
 
-        //CategoryRepository Category { get; }
+        QuizzesRepository Quizzes { get; }
         //ProductRepository Product { get; }
 
         GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;

@@ -1,3 +1,4 @@
+using BLL.Services;
 using BLL.Services.Base;
 using DAL.Data;
 using DAL.Infratructure;
@@ -10,17 +11,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // read ConnectionString from appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnectionString");
-
 // add DataDbContext
 builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container
-//builder.Services.AddScoped<IBaseService<Category>, CategoryService>();
+builder.Services.AddScoped<QuizzesService>();
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllers();

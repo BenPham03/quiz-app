@@ -6,6 +6,8 @@ namespace BLL
     {
         public int PageIndex { get; private set; }
         public int TotalPages { get; private set; }
+        public int TotalCount { get; private set; }
+
         public List<T> Items { get; private set; }
 
         public PaginatedResult(List<T> items, int count, int pageIndex, int pageSize)
@@ -13,6 +15,7 @@ namespace BLL
             PageIndex = pageIndex;
             TotalPages = (int)Math.Ceiling(count / (double)pageSize);
             Items = items;
+            TotalCount = count;
         }
 
         public bool HasPreviousPage => PageIndex > 1;

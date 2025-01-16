@@ -30,7 +30,7 @@ namespace DAL.Repositories
             return _dbSet.Find(id);
         }
 
-        public async Task<T?> GetByIdAsync(Guid id)
+        public async Task<T?> GetByIdAsync(Guid id, string includeProperties = "")
         {
             return await _dbSet.FindAsync(id);
         }
@@ -84,5 +84,6 @@ namespace DAL.Repositories
         {
             return _dbSet.Where(predicate);
         }
+
     }
 }

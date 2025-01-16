@@ -1,4 +1,5 @@
 ﻿using DAL.Infratructure;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace BLL.Services.Base
@@ -57,16 +58,44 @@ namespace BLL.Services.Base
             return await _unitOfWork.GenericRepository<T>().GetAllAsync();
         }
 
-        public async Task<PaginatedResult<T>> GetAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, string includeProperties = "", int pageIndex = 1, int pageSize = 10)
+        public async Task<PaginatedResult<T>> GetAsync(Expression<Func<T, bool>>? filter = null,Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,string includeProperties = "",int pageIndex = 1,int pageSize = 10)
         {
-            var query = _unitOfWork.GenericRepository<T>().Get(filter, orderBy, includeProperties);
+            // Truy vấn dữ liệu ban đầu
+            var query = _unitOfWork.GenericRepository<T>().Get(filter, orderBy);
+
+            // Xử lý Include các bảng liên quan
+            if (!string.IsNullOrWhiteSpace(includeProperties))
+            {
+                foreach (var includeProperty in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            // Tạo kết quả phân trang
             return await PaginatedResult<T>.CreateAsync(query, pageIndex, pageSize);
         }
 
-        public async Task<T?> GetByIdAsync(Guid id)
+
+        public async Task<T?> GetByIdAsync(Guid id, string includeProperties = "")
         {
-            return await _unitOfWork.GenericRepository<T>().GetByIdAsync(id);
+            // Lấy dữ liệu từ repository với `includeProperties`
+            var query = _unitOfWork.GenericRepository<T>().Get(
+                filter: x => EF.Property<Guid>(x, "Id") == id // Sử dụng EF.Property để truy vấn
+                
+            );
+            if (!string.IsNullOrWhiteSpace(includeProperties))
+            {
+                foreach (var includeProperty in includeProperties.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+            return await query.FirstOrDefaultAsync();
         }
+
+
+
 
         public async Task<bool> UpdateAsync(T entity)
         {
