@@ -31,7 +31,7 @@ builder.Services.AddDbContext<DataDbContext>(options => options.UseSqlServer(con
 //builder.Services.AddScoped<IBaseService<Product>, ProductService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
-builder.Services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<QuizService>();
 builder.Services.AddScoped<QuestionService>();
@@ -41,9 +41,9 @@ builder.Services.AddScoped<UserAnswerService>();
 builder.Services.AddScoped<DoExamService>();
 
 
-builder.Services.AddScoped<IQuizRepository, QuizRepository>(); 
-builder.Services.AddScoped<IQuestionRepository, QuestionRepository>(); 
-builder.Services.AddScoped<IAttemptRepository, AttemptRepository>(); 
+builder.Services.AddScoped<IQuizRepository, QuizRepository>();
+builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
+builder.Services.AddScoped<IAttemptRepository, AttemptRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
 builder.Services.AddControllers();
