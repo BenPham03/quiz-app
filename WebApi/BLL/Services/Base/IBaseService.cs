@@ -10,7 +10,7 @@ namespace BLL.Services.Base
     public interface IBaseService<T> where T : class
     {
         Task<int> AddAsync(T entity);
-        Task<bool> UpdateAsync(T entity);
+        Task<bool> UpdateAsync(T entity, Func<T, Task> updateRelatedEntities = null);
         bool Delete(Guid id);
         Task<bool> DeleteAsync(Guid id);
         Task<bool> DeleteAsync(T entity);

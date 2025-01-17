@@ -97,14 +97,23 @@ namespace BLL.Services.Base
 
 
 
-        public async Task<bool> UpdateAsync(T entity)
+        public async Task<bool> UpdateAsync(T entity, Func<T, Task> updateRelatedEntities = null)
         {
-            if (entity != null)
+            if (entity == null)
             {
-                _unitOfWork.GenericRepository<T>().Update(entity);
-                return await _unitOfWork.SaveChangesAsync() > 0 ? true : false;
+                throw new ArgumentNullException(nameof(entity));
             }
-            throw new ArgumentNullException(nameof(entity));
+
+            // Cập nhật các thực thể liên quan trước khi lưu thay đổi
+            if (updateRelatedEntities != null)
+            {
+                await updateRelatedEntities(entity);
+            }
+
+            // Cập nhật thực thể chính
+            _unitOfWork.GenericRepository<T>().Update(entity);
+            return await _unitOfWork.SaveChangesAsync() > 0;
         }
+
     }
 }

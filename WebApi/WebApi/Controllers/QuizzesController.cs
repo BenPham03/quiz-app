@@ -17,7 +17,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateQuizzes([FromBody] addQuizzesVM addQuizzesVM)
+        public async Task<IActionResult> CreateQuizzes(addQuizzesVM addQuizzesVM)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +52,31 @@ namespace WebApi.Controllers
                 var result = await _quizzesService.AddAsync(quizzes);
                 if (result > 0)
                 {
-                    return Ok(new { message = "Quiz created successfully." });
+                    var response = new QuizzesVM
+                    {
+                        Id = quizzes.Id,
+                        Title = quizzes.Title,
+                        Description = quizzes.Description,
+                        Subject = quizzes.Subject,
+                        Config = quizzes.Config,
+                        CreatedAt = quizzes.CreatedAt,
+                        LastUpdateAt = quizzes.LastUpdateAt,
+                        UserId = quizzes.UserId,
+                        User = quizzes.User,
+                        Questions = quizzes.Questions.Select(q => new QuestionsVM
+                        {
+                            Id = q.Id,
+                            QuestionContent = q.QuestionContent,
+                            QuestionType = (QuestionType)q.QuestionType,
+                            Answers = q.Answers.Select(a => new AnswersVM
+                            {
+                                AnswerContent = a.AnswerContent,
+                                IsCorrect = a.IsCorrect
+                            }).ToList()
+                        }).ToList()
+                    };
+
+                    return Ok(response);
                 }
             }
             catch (Exception ex)
@@ -155,39 +179,26 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateQuiz(Guid id, updateQuizzesVM updateQuizzesVM)
         {
-            var quiz = await _quizzesService.GetByIdAsync(id);
-            if (quiz == null)
+            try
             {
-                return NotFound(new { message = "Quiz not found." });
-            }
-
-            // Update quiz properties
-            quiz.Title = updateQuizzesVM.Title;
-            quiz.Description = updateQuizzesVM.Description;
-            quiz.Subject = updateQuizzesVM.Subject;
-            quiz.Config = updateQuizzesVM.Config;
-            quiz.LastUpdateAt = DateTime.UtcNow;
-
-            // Update questions and answers
-            quiz.Questions.Clear();
-            quiz.Questions = updateQuizzesVM.Questions.Select(q => new Questions
-            {
-                QuestionContent = q.QuestionContent,
-                QuestionType = (QuestionType)q.QuestionType,
-                Answers = q.Answers.Select(a => new Answers
+                var result = await _quizzesService.UpdateQuizAsync(id, updateQuizzesVM);
+                if (result)
                 {
-                    AnswerContent = a.AnswerContent,
-                    IsCorrect = a.IsCorrect
-                }).ToList()
-            }).ToList();
+                    return Ok(new { message = "Quiz đã được cập nhật thành công." });
+                }
 
-            var result = await _quizzesService.UpdateAsync(quiz);
-            if (result)
-            {
-                return Ok(new { message = "Quiz updated successfully." });
+                return StatusCode(500, new { message = "Cập nhật Quiz thất bại." });
             }
-
-            return StatusCode(500, "Failed to update quiz.");
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
+
+
     }
 }

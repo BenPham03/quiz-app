@@ -19,7 +19,6 @@ namespace DAL.Models
 
         public Guid? QuizzId { get; set; }
         public Quizzes? Quizzes { get; set; }
-        [JsonIgnore]
         public ICollection<Answers> Answers { get; set; } = new List<Answers>();
         [JsonIgnore]
         public ICollection<UserAnswers> UserAnswers { get; set; } = new List<UserAnswers>();

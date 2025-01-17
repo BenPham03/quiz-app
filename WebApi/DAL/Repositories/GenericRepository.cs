@@ -42,8 +42,14 @@ namespace DAL.Repositories
 
         public void Update(T entity)
         {
-            _dbSet.Update(entity);
+            var entry = _dbContext.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
+            entry.State = EntityState.Modified;
         }
+
 
         public void Delete(Guid id)
         {

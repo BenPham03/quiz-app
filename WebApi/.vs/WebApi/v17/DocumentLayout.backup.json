@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\dal\\models\\questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\services\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\services\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\services\\quizzesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\quizzesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\webapi\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\viewmodels\\addquizzesvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,16 +35,16 @@
       "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\infratructure\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\webapi\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|solutionrelative:webapi\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\dal\\models\\answers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\answers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\services\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\base\\baseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\dal\\models\\questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8C0BD2C1-4CC3-4B16-BE10-63B953C89BCB}|DAL\\DAL.csproj|solutionrelative:dal\\models\\questions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\services\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\services\\base\\ibaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\bll\\viewmodels\\questionsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AD25FCC1-FAE2-4F36-8B21-C8550FB2D929}|BLL\\BLL.csproj|solutionrelative:bll\\viewmodels\\questionsvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FCBB7563-ECE9-4CE7-95FF-A1242CA72FB4}|WebApi\\WebApi.csproj|d:\\t\u00E0i li\u1EC7u\\d\u1EF1 \u00E1n\\quiz-app\\webapi\\webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,67 +58,119 @@
       "DocumentGroups": [
         {
           "DockedWidth": 206,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IBaseService.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\IBaseService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Base\\IBaseService.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\IBaseService.cs",
+              "RelativeToolTip": "BLL\\Services\\Base\\IBaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-17T20:15:36.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QuizzesService.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\QuizzesService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\QuizzesService.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\QuizzesService.cs",
+              "RelativeToolTip": "BLL\\Services\\QuizzesService.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAwwHUAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-17T20:13:34.335Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Program.cs",
-              "RelativeDocumentMoniker": "WebApi\\Program.cs",
-              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Program.cs",
-              "RelativeToolTip": "WebApi\\Program.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "BaseService.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\BaseService.cs",
+              "RelativeDocumentMoniker": "BLL\\Services\\Base\\BaseService.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\BaseService.cs*",
+              "RelativeToolTip": "BLL\\Services\\Base\\BaseService.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T20:30:20.859Z",
+              "WhenOpened": "2025-01-17T19:57:29.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 8,
+              "Title": "Answers.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Models\\Answers.cs",
+              "RelativeDocumentMoniker": "DAL\\Models\\Answers.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Models\\Answers.cs",
+              "RelativeToolTip": "DAL\\Models\\Answers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-17T20:00:34.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "QuestionsVM.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\ViewModels\\QuestionsVM.cs",
+              "RelativeDocumentMoniker": "BLL\\ViewModels\\QuestionsVM.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\ViewModels\\QuestionsVM.cs",
+              "RelativeToolTip": "BLL\\ViewModels\\QuestionsVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-17T19:43:33.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Questions.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Models\\Questions.cs",
               "RelativeDocumentMoniker": "DAL\\Models\\Questions.cs",
               "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Models\\Questions.cs",
               "RelativeToolTip": "DAL\\Models\\Questions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-16T20:24:50.764Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "addQuizzesVM.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\ViewModels\\addQuizzesVM.cs",
               "RelativeDocumentMoniker": "BLL\\ViewModels\\addQuizzesVM.cs",
               "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\ViewModels\\addQuizzesVM.cs",
               "RelativeToolTip": "BLL\\ViewModels\\addQuizzesVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-16T20:19:09.13Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "DAL\\Repositories\\GenericRepository.cs",
               "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Repositories\\GenericRepository.cs",
               "RelativeToolTip": "DAL\\Repositories\\GenericRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAkwDUAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-16T19:56:26.063Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "IGenericRepository.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Repositories\\IGenericRepository.cs",
               "RelativeDocumentMoniker": "DAL\\Repositories\\IGenericRepository.cs",
@@ -119,52 +183,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IBaseService.cs",
-              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\IBaseService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Base\\IBaseService.cs",
-              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\IBaseService.cs",
-              "RelativeToolTip": "BLL\\Services\\Base\\IBaseService.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T18:31:16.28Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "BaseService.cs",
-              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\BaseService.cs",
-              "RelativeDocumentMoniker": "BLL\\Services\\Base\\BaseService.cs",
-              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\BLL\\Services\\Base\\BaseService.cs",
-              "RelativeToolTip": "BLL\\Services\\Base\\BaseService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAowA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-16T18:28:04.456Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "QuizzesController.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Controllers\\QuizzesController.cs",
               "RelativeDocumentMoniker": "WebApi\\Controllers\\QuizzesController.cs",
               "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Controllers\\QuizzesController.cs",
               "RelativeToolTip": "WebApi\\Controllers\\QuizzesController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAmwB0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAKkAAAAAAAAAAAAmwLMAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T14:39:58.761Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Program.cs",
+              "RelativeDocumentMoniker": "WebApi\\Program.cs",
+              "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\WebApi\\Program.cs",
+              "RelativeToolTip": "WebApi\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T20:30:20.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Infratructure\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "DAL\\Infratructure\\UnitOfWork.cs",
               "ToolTip": "D:\\T\u00E0i li\u1EC7u\\D\u1EF1 \u00E1n\\quiz-app\\WebApi\\DAL\\Infratructure\\UnitOfWork.cs",
               "RelativeToolTip": "DAL\\Infratructure\\UnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-15T14:36:47.29Z",
               "EditorCaption": ""
