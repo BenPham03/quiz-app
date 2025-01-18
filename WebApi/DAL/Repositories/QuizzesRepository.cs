@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DAL.Repositories.QuizzesRepository;
 
 namespace DAL.Repositories
 {
@@ -36,8 +37,11 @@ namespace DAL.Repositories
 
             return quizzes;
         }
-
-
-
+        public async Task<Quizzes?> GetById(Guid id)
+        {
+            var quiz = await _dbContext.Quizzes.Include(q => q.Questions).ThenInclude(q => q.Answers)
+                .FirstOrDefaultAsync(c => c.Id ==id);
+            return quiz;
+        }
     }
 }

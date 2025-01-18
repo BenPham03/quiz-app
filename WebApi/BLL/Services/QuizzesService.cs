@@ -2,6 +2,7 @@
 using BLL.ViewModels;
 using DAL.Infratructure;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace BLL.Services
         }
         public async Task<bool> UpdateQuizAsync(Guid quizId, updateQuizzesVM updateQuizzesVM)
         {
-            var quiz = await _unitOfWork.Quizzes.GetByIdAsync(quizId);
+            var quiz = await _unitOfWork.Quizzes.GetById(quizId);
             if (quiz == null)
             {
                 throw new KeyNotFoundException("Quiz không tồn tại.");
@@ -120,6 +121,6 @@ namespace BLL.Services
             // Lưu thay đổi
             return await _unitOfWork.SaveChangesAsync() > 0;
         }
-
+       
     }
 }

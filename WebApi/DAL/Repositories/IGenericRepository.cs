@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using DAL.Models;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -15,5 +16,6 @@ namespace DAL.Repositories
         IQueryable<T> GetQuery();
         IQueryable<T> GetQuery(Expression<Func<T, bool>> predicate);
         IQueryable<T> Get(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, string includeProperties = "");
+
     }
 }

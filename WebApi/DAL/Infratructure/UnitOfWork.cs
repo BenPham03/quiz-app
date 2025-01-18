@@ -1,6 +1,7 @@
 ﻿using DAL.Data;
 using DAL.Models;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Concurrent;
 
 namespace DAL.Infratructure
@@ -14,12 +15,22 @@ namespace DAL.Infratructure
         public DataDbContext Context => _dbContext;
 
         public QuizzesRepository Quizzes => new QuizzesRepository(_dbContext);
+        private AttemptsRepository _attempts;
 
         public UnitOfWork(DataDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
+        public AttemptsRepository Attempts
+        {
+            get { return _attempts ??= new AttemptsRepository(_dbContext); }
+        }
+
+        public int Complete()
+        {
+            return _dbContext.SaveChanges();
+        }
 
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class
         {

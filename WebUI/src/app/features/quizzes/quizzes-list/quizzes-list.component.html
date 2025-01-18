@@ -39,11 +39,10 @@
               <h5>{{ quiz.title }}</h5>
               <p class="mb-1">{{ quiz.description }}</p>
               <p class="text-muted">Subject: {{ quiz.subject }} | {{ quiz.QuestionCount }} questions</p>
+              <p class="text-muted">Code:{{quiz.id}}</p>
               <p class="text-muted">Created: {{ quiz.createdAt | date: 'shortDate' }}</p>
             </div>
             <div>
-              <button class="btn btn-primary me-2">Play</button>
-              <button class="btn btn-secondary me-2">Share</button>
               <button class="btn btn-warning me-2" (click)="updateQuiz(quiz.id)">Update</button>
               <button class="btn btn-danger" (click)="deleteQuiz(quiz.id)">Delete</button>
             </div>

@@ -6,7 +6,8 @@ namespace DAL.Infratructure
     public interface IUnitOfWork
     {
         DataDbContext Context { get; }
-
+        AttemptsRepository Attempts { get; }
+        int Complete();
         QuizzesRepository Quizzes { get; }
         //ProductRepository Product { get; }
 

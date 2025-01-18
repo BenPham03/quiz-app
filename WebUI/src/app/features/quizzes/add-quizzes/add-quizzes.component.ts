@@ -14,16 +14,17 @@ import { ActivatedRoute } from '@angular/router';
 export class AddQuizzesComponent {
   examId!: string;
   isExamEditing = false;
+  isEditing = false;
   model: AddQuizzesRequest;
   // Config object để xử lý trong modal
   config = {
-    maxTime: 60, // thời gian làm bài tối đa (mặc định)
-    allowRetry: false, // có cho phép làm lại hay không
-    showAnswers: false, // có hiển thị đáp án sau khi làm hay không
+    Time: 60, // thời gian làm bài tối đa (mặc định)
   };
   saveConfig() 
   {
+
     this.model.config = JSON.stringify(this.config);
+    console.log(this.model.config)
   }
   constructor(private quizzesService: QuizzesService,private route: ActivatedRoute) 
   {
@@ -48,7 +49,9 @@ export class AddQuizzesComponent {
   loadExamData(id: string) {
     this.quizzesService.getQuizById(id).subscribe((data) => {
       this.model = data; // Gán dữ liệu lấy được vào model
-      this.config = data.config || this.config; // Nếu có config thì gán vào
+      console.log(this.model)
+      this.config = JSON.parse( data.config) || this.config; // Nếu có config thì gán vào
+      console.log(this.config)
     });
   }
   addQuestion() {
@@ -65,13 +68,12 @@ export class AddQuizzesComponent {
     questionType: 'MultipleChoice',
     answers: [{ answerContent: '', isCorrect: false }],
   };
-  isEditing = false;
   editingIndex = -1;
   saveQuestion() {
     if (this.isEditing) {
       // Cập nhật câu hỏi đang chỉnh sửa
       this.model.questions[this.editingIndex] = { ...this.currentQuestion };
-      this.isEditing = false;
+      this.isExamEditing = false;
       this.editingIndex = -1;
     } else {
       // Thêm mới câu hỏi
@@ -123,8 +125,11 @@ export class AddQuizzesComponent {
 
   // Hàm xử lý submit form
   onFormSubmit() {
+    console.log(this.isEditing)
     if (this.isEditing) {
+      console.log(this.isEditing)
       if (this.examId !== null) {
+        
         this.quizzesService.updateQuiz(this.examId, this.model).subscribe(() => {
           alert('Exam updated successfully!');
         });
