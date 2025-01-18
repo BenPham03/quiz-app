@@ -39,6 +39,7 @@ builder.Services.AddScoped<AnswerService>();
 builder.Services.AddScoped<AttemptService>();
 builder.Services.AddScoped<UserAnswerService>();
 builder.Services.AddScoped<DoExamService>();
+builder.Services.AddScoped<InteractionService>();
 
 
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();
@@ -46,6 +47,7 @@ builder.Services.AddScoped<IQuestionRepository, QuestionRepository>();
 builder.Services.AddScoped<IAttemptRepository, AttemptRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();
 builder.Services.AddScoped<IUserAnswerRepository, UserAnswerRepository>();
+builder.Services.AddScoped<IInteractionRepository, InteractionRepository>();
 builder.Services.AddControllers();
 
 // add versioning

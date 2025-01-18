@@ -11,6 +11,6 @@ namespace BLL.ViewModels
     public class SubmitExamRequestVM
     {
         public CreateAttemptRequest Attempt { get; set; }
-        public List<UserAnswers> UserAnswers { get; set; }
+        public List<CreareUserAnswerRequestVM> UserAnswers { get; set; }
     }
 }

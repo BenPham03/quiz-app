@@ -58,7 +58,7 @@ export class AuthService {
       return this.http.post(`${Base_URL}/Authentication/update-password`, updatePasswordRequest,{headers})
     }
     logout() {
+      console.log('dl')
     this.cookieService.delete('token')
-    this.socialAuthService.signOut();
   }
 }

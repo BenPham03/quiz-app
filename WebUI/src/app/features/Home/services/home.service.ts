@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Base_URL } from '../../../app.config';
+import { CreateInteractionRequest, Interaction } from '../models/Interaction';
+import { CreateAttemptRequest } from '../../Do-Exam/models/CreateAttemptRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,16 @@ export class HomeService {
     .set('status', status.toString())
     .set('isDescending', isDescending.toString());
     return this.http.get(`${Base_URL}/Quiz/get-filter`,{params});
+  }
+  createInteraction(interaction : CreateInteractionRequest) : Observable<any>
+  {
+    console.log(interaction)
+    return this.http.post(`${Base_URL}/Interaction/add-new-interaction`, interaction) 
+  }
+  deleteInteraction(quizId:string) : Observable<any>
+  {
+    let params = new HttpParams()
+    .set('quizId', quizId.toString())
+    return this.http.delete(`${Base_URL}/Interaction/delete`, {params}) 
   }
 }

@@ -3,6 +3,7 @@ using BLL.Services.Base;
 using BLL.ViewModels.Quiz;
 using DAL.Infratructure;
 using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace BLL.Services
         }
         public async Task<PaginatedResult<Quizzes>> GetFilter(int pageIndex = 1, int pageSize = 6, bool status = true, bool isDescending = true)
         {
-            var query = _unitOfWork.Quiz.GetFilter(status: status, isDescending : isDescending);
+            var query = _unitOfWork.Quiz.GetFilter(status: status, isDescending : isDescending, includeProperties : "Interactions,Questions");
+            var check = await query.ToListAsync();
             return await PaginatedResult<Quizzes>.CreateAsync(query, pageIndex, pageSize);
         }
         public async Task<PaginatedResult<Quizzes>> GetDone(string userId, int pageIndex = 1, int pageSize = 6)

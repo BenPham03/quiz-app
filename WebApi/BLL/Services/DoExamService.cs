@@ -22,6 +22,7 @@ namespace BLL.Services
             attempt.Score = score;
             _unitOfWork.Attempt.Add(attempt);
             _unitOfWork.SaveChangesAsync();
+            userAnswers.ForEach(c => c.AttemptId = attempt.Id);
             _unitOfWork.UserAnswer.AddRange(userAnswers);
             return await _unitOfWork.SaveChangesAsync();
         }

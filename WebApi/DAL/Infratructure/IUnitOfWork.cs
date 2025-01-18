@@ -16,6 +16,7 @@ namespace DAL.Infratructure
                 IAnswerRepository Answer { get; }
                 IAttemptRepository Attempt { get; }
                 IUserAnswerRepository UserAnswer { get; }
+                IInteractionRepository Interaction { get; }
 
         GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
 

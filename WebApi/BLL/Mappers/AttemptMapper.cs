@@ -11,7 +11,7 @@ namespace BLL.Mappers
 {
     public static class AttemptMapper
     {
-        public static Attempts ToAttemptFromCreate(this CreateAttemptRequest request)
+        public static Attempts ToAttemptFromCreate(this CreateAttemptRequest request, string userId = null)
         {
             return new Attempts
             {
@@ -20,7 +20,7 @@ namespace BLL.Mappers
                 AttemptAt = request.AttemptAt,
                 Name = request.Name,
                 Duration = request.Duration,
-                UserId = request.UserId,
+                UserId = userId,
                 QuizzId = request.QuizzId
             };
         }

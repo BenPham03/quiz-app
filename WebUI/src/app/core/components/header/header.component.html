@@ -16,9 +16,13 @@
         </label>
         <input type="checkbox" style="display: none;" id="account-toggle">
         <div class="account-option">
-            <div class="account-option-item">
+            <div class="account-option-item logout" *ngIf="isLogin" (click)="logOut()">
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                 <p>Logout</p>
+            </div>
+            <div class="account-option-item signIn" *ngIf="!isLogin" (click)="signIn()">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <p>SignIn</p>
             </div>
         </div>
     </div>

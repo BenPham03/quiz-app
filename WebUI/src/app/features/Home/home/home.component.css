@@ -55,6 +55,7 @@
     padding: 12px;
     font-family: Arial, sans-serif;
     position: relative;
+    text-align: center;
 }
 
 .quiz-avatar {
@@ -69,8 +70,9 @@
 }
 
 .quiz-avatar img {
-    width: 60%;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 }
 .quiz-info h3 {
     font-size: 18px;
@@ -93,7 +95,7 @@
     padding: 5px 12px;
     cursor: pointer;
     font-size: 12px;
-    margin: 10px 0 0 10px;
+    margin-top: 10px;
     width: 80px;
     height: 30px;
 }
@@ -127,7 +129,10 @@
     background-color: #e0e0e0;
     border-radius: 8px;
 }
-
+.image-placeholder img{
+    width: 100%;
+    height: 100%;
+}
 .done-quiz-card .content {
     display: flex;
     flex-direction: row;
@@ -221,4 +226,72 @@
     line-height: 10px;
     cursor: pointer;
     margin-right: 30px;
+}
+
+
+/* Overlay (phần nền mờ) */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Màu đen với độ mờ */
+    z-index: 999;
+    /* Đảm bảo nằm dưới modal */
+}
+
+/* Hiển thị overlay khi modal mở */
+.overlay.show {
+    display: block;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Modal nằm trên overlay */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.close-button {
+    align-self: flex-end;
+    font-size: 18px;
+    cursor: pointer;
+}
+.start-quiz{
+    background-color: #000cf3;
+    height: 40px;
+    color: #fff;
+    border: #333 solid 0px;
+    border-radius: 15px;
+}
+.modal-content input{
+    height:  30px;
+    border: #333 solid 1px;
+    padding: 10px;
+}
+.saved{
+    color: #7e57c2 !important;
 }

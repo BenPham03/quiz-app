@@ -42,7 +42,9 @@ html, body {
     color: rgb(111, 5, 111);
     margin-top: -5px; /* Thêm khoảng cách từ trên */
   }
-  
+  .countDown{
+    height: 20px;
+  }
   .quiz-basic {
     font-size: 0.9rem;
     font-weight: bold;
@@ -161,7 +163,9 @@ html, body {
   .not-answered {
     background-color: #15d034; /* Màu đỏ khi chưa chọn đáp án */
   }
-  
+  .mark-question {
+    background-color: #fd4040!important;
+  }
   .answered {
     background-color: purple; /* Màu tím khi đã chọn đáp án */
   }

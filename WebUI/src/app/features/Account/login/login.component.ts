@@ -80,8 +80,32 @@ export class LoginComponent implements OnInit{
     )
   }
   ngOnInit() : void{
+  if (typeof google !== 'undefined') {
+    // @ts-ignore
+      window.onGoogleLibraryLoad = () => {
+      this.initializeGoogleSignIn();}
+    } else {
       // @ts-ignore
-  window.onGoogleLibraryLoad = () =>{
+      window.onGoogleLibraryLoad = () => {
+        this.initializeGoogleSignIn();
+      };
+    }
+  
+}
+
+  ngAfterViewInit(): void {
+    this.initializeGoogleSignIn()
+    setTimeout(() => {
+      google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById('buttonDiv'),
+      { theme: 'outline', size: 'large',width : '800px'}
+      
+    );
+    }, 100);
+    
+  }
+  initializeGoogleSignIn(){
     google.accounts.id.initialize({
       client_id: '317279261159-8p7197blc6u7djrstkcq84repkvg5b2l.apps.googleusercontent.com',
       callback : this.handleCredentialResponse.bind(this),
@@ -89,17 +113,17 @@ export class LoginComponent implements OnInit{
       cancel_on_tap_outside: true
     });
 
+    this.renderGoogleButton()
+    google.accounts.id.prompt((notification: PromptMomentNotification) =>{}); 
+  }
+  renderGoogleButton(){
     google.accounts.id.renderButton(
       // @ts-ignore
       document.getElementById('buttonDiv'),
       { theme: 'outline', size: 'large',width : '800px'}
       
     );
-    google.accounts.id.prompt((notification: PromptMomentNotification) =>{}); 
   }
-  
-}
-
 async handleCredentialResponse(response: CredentialResponse){
 
   await this.authservice.loginWithGoogle(response.credential).subscribe(
@@ -108,7 +132,7 @@ async handleCredentialResponse(response: CredentialResponse){
     console.log(x.token)
       this.cookieService.set("token", x.token); 
       this._ngZone.run(() =>{
-        this.router.navigate(['/example'])
+        this.router.navigate(['/home'])
       })
     },
     (error: any) =>{

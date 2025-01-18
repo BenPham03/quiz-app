@@ -1,45 +1,62 @@
-<app-nav></app-nav>
-<app-header></app-header>
-<div id="container">
-    <div id="highest-point"></div>
-    <div id="popular-quiz"></div>
-    <div id="chart"></div>
-    <div id="list-quiz" *ngFor = 'let quiz of quizzes'>
-        <div class="quiz-card">
-            <div class="quiz-avatar">
-                <img src="avatar-placeholder.png" alt="Avatar">
-            </div>
-            <div class="quiz-info">
-                <h3>{{quiz.title}}</h3>
-                <p>subject</p>
-                <p>65%</p>
-            </div>
-            <div class="quiz-actions">
-                <button class="retry-button">Retry</button>
-                <span class="favorite-icon">&#9825;</span>
-            </div>
-        </div>
-    </div>
-    <div id="quiz-done">
-        <div class="done-quiz-card">
-            <div class="image-placeholder"></div>
-            <div class="content">
-                <h3>Exam Name</h3>
-                <button class="try-button">Try</button>
-            </div>
-            <p style="font-size: 15px;">Subject</p>
-            <div class="action">
-                <p>This is description of this exam</p>
-                <div class="score">80</div>
-            </div>
-            <div class="footer">
-                <div class="avatars">
-                    <div class="avatar"><img src="avatar1.jpg" alt="Avatar"></div>
-                    <div class="avatar"><img src="avatar2.jpg" alt="Avatar"></div>
-                    <div class="avatar"><img src="avatar3.jpg" alt="Avatar"></div>
+    <app-nav></app-nav>
+    <app-header></app-header>
+    <div id="container">
+        <div id="highest-point"></div>
+        <div id="popular-quiz"></div>
+        <div id="chart"></div>
+        <div id="list-quiz" *ngFor = 'let quiz of quizzes'>
+            <div class="quiz-card">
+                <div class="quiz-avatar">
+                    <img src="/avt1.jpeg" alt="Avatar">
                 </div>
-                <div class="heart">♡</div>
+                <div class="quiz-info">
+                    <h3>{{quiz.title}}</h3>
+                    <p>subject</p>
+                    <p>65%</p>
+                </div>
+                <div class="quiz-actions">
+                    <button class="retry-button" (click)="openModal(quiz.id, quiz.config)">Retry</button>
+                    <!-- <span class="favorite-icon">&#9825;</span> -->
+                </div>
+            </div>
+        </div>
+        <div id="quiz-done" *ngFor = 'let quiz of quizzes'>
+            <div class="done-quiz-card">
+                <div class="image-placeholder">
+                    <img src="/Quiz.webp" alt="Quiz">
+                </div>
+                <div class="content">
+                    <h3>{{quiz.title}}</h3>
+                    <button class="try-button" (click)="openModal(quiz.id, quiz.config)">Try</button>
+                </div>
+                <p style="font-size: 15px;">Subject</p>
+                <div class="action">
+                    <p>{{quiz.description}}</p>
+                    <div class="heart"
+                    [ngClass]  = "{'saved' : quiz.interactions.length != 0}"
+                    (click)="addNewInteraction(quiz.id, quiz.interactions)">♡</div>
+
+                    <!-- <div class="score">80</div> -->
+                </div>
+                <div class="footer">
+                    <div class="avatars">
+                        <!-- <div class="avatar"><img src="avatar1.jpg" alt="Avatar"></div>
+                        <div class="avatar"><img src="avatar2.jpg" alt="Avatar"></div>
+                        <div class="avatar"><img src="avatar3.jpg" alt="Avatar"></div> -->
+                    </div>
+                    <!-- <div class="heart">♡</div> -->
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div id="modal-overlay" class="overlay" [class.show]="isModalVisible" (click)="handleOverlayClick($event)"></div>
+
+    <div id="retry-modal" class="modal" [class.show]="isModalVisible">
+        <div class="modal-content">
+            <span class="close-button" (click)="closeModal()">×</span>
+            <h2>Retry Quiz</h2>
+            <label for="name">Enter your name:</label>
+            <input type="text" id="name" [(ngModel)]="userName" placeholder="Your name">
+            <button (click)="submitRetry()" class="start-quiz">Start quiz</button>
+        </div>
+    </div>

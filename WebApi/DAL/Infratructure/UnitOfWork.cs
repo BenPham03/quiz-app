@@ -27,6 +27,8 @@ namespace DAL.Infratructure
 
         public IUserAnswerRepository UserAnswer { get; private set; }
 
+        public IInteractionRepository Interaction { get; private set; }
+
         //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
@@ -37,6 +39,7 @@ namespace DAL.Infratructure
             Answer = new AnswerRepository(_dbContext);
             Attempt = new AttemptRepository(_dbContext);
             UserAnswer = new UserAnswerRepository(_dbContext);
+            Interaction = new InteractionRepository(_dbContext);
         }
 
         public GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class

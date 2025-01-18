@@ -9,6 +9,8 @@ using System.Linq.Expressions;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DAL.Repositories
 {
@@ -34,14 +36,23 @@ namespace DAL.Repositories
             }
             return null;
         }
-        public IQueryable<Quizzes> GetFilter(bool status = true, bool isDescending = true)
+        public IQueryable<Quizzes> GetFilter(bool status = true, bool isDescending = true, string includeProperties = "")
         {
             IQueryable<Quizzes> quiz = _dbContext.Quizzes;
             Expression<Func<Quizzes, bool>>? filter = null;
             filter = qz => qz.Status == status;
             Func<IQueryable<Quizzes>, IOrderedQueryable<Quizzes>> order = null;
             order = qz => qz.OrderByDescending(q => q.CreatedAt);
-            return order(quiz.Where(filter));
+            var quizzes = order(quiz.Where(filter));
+            IQueryable<Quizzes> queryable = (IOrderedQueryable<Quizzes>)quizzes;
+            if (!string.IsNullOrWhiteSpace(includeProperties))
+            {
+                foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    queryable = queryable.Include(property);
+                }
+            }
+            return queryable;
             
         }
        public IQueryable<Quizzes> GetDoneQuiz(string userId)

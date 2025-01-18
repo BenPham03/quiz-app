@@ -14,6 +14,7 @@ namespace BLL.Mappers
         {
             return new Quizzes
             {
+                Id = Guid.NewGuid(),
                 Title = model.Title,
                 Description = model.Description,
                 Config = model.Config,
@@ -32,6 +33,18 @@ namespace BLL.Mappers
                 Config = model.Config,
                 Status = model.Status,
                 LastUpdateAt = model.LastUpdateAt,
+            };
+        }
+        public static QuizVM ToQuizVM(this QuizVM model)
+        {
+            return new QuizVM
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Config = model.Config,
+                Status = model.Status,
+                LastUpdateAt = model.LastUpdateAt,
+
             };
         }
     }

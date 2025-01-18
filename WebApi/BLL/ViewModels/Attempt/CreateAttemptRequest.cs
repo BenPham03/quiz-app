@@ -13,8 +13,6 @@ namespace BLL.ViewModels.Attempt
         public DateTime AttemptAt { get; set; } = DateTime.Now;
         public string? Name { get; set; }
         public int Duration { get; set; }
-        public string? UserId { get; set; }
-
         public Guid? QuizzId { get; set; }
     }
 }
