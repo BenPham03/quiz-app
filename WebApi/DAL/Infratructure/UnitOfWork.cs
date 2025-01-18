@@ -10,7 +10,7 @@ namespace DAL.Infratructure
         private readonly DataDbContext _dbContext;
         //private readonly CategoryRepository _category;
         private readonly ReportRepository _report;
-        //private readonly ProductRepository _product;
+        private readonly AdminRepository _admin;
 
         public DataDbContext Context => _dbContext;
 
@@ -30,6 +30,7 @@ namespace DAL.Infratructure
         public IInteractionRepository Interaction { get; private set; }
 
         //public ProductRepository Product => _product ?? new ProductRepository(_dbContext);
+        public AdminRepository Admin => _admin ?? new AdminRepository(_dbContext);
 
         public UnitOfWork(DataDbContext dbContext)
         {
@@ -77,9 +78,16 @@ namespace DAL.Infratructure
             _dbContext.Dispose();
         }
 
+<<<<<<< HEAD
         //GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
         //{
         //    throw new NotImplementedException();
         //}
+=======
+        GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
+        {
+            return new GenericRepository<TEntity>(_dbContext);
+        }
+>>>>>>> a523be8e82fad80655561006f35292f6a5ca6515
     }
 }

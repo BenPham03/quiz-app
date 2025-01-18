@@ -32,3 +32,4 @@ export const appConfig: ApplicationConfig = {
 };
 
 export const Base_URL: string = 'https://localhost:7282/api/v1'
+export const BASE_URL:string="https://localhost:7282/api/"

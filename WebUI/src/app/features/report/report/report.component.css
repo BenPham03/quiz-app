@@ -7,6 +7,90 @@
     margin-top:24px;
     flex-wrap: wrap;
 }
+.box:has(#chart){
+    padding-bottom:24px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+#chart{
+    display: grid;
+    padding:12px;
+    height:100%;
+    width: 100%;
+    grid-template-rows: repeat(auto-fit,4px);
+    grid-template-columns: repeat(auto-fit,1px);
+    border-bottom: 4px solid #9629b0;
+    position: relative;
+}
+#chart::before{
+    content:'';
+    width: 24px;
+    height:24px;
+    border-radius: 12px;
+    position: absolute;
+    background-color: #9629b0;
+    bottom: -16px;
+}
+#chart::after{
+    content:'';
+    width: 24px;
+    height:24px;
+    position: absolute;
+    border-top: 4px solid #9629b0;
+    border-right: 4px solid #9629b0;
+    bottom: -14px;
+    right: 4px;
+    transform: rotate(45deg);
+}
+#early{
+    position: absolute;
+    bottom:-22px;
+}
+#last{
+    position: absolute;
+    bottom:-22px;
+    right:-10px;
+}
+.line-chart{
+    background-color: #9629b0;
+    border-radius: 1px;
+    position: relative;
+}
+.line-chart::before{
+    content: '';
+    width: 12px;
+    height:12px;
+    background-color: #9629b0;
+    border-radius: 6px;
+    position: absolute;
+    left:-6px;
+    top:-4px;
+}
+.line-chart::after{
+    content: '';
+    width: 12px;
+    height:12px;
+    background-color: #9629b0;
+    border-radius: 6px;
+    position: absolute;
+    right:-6px;
+    top:-4px;
+}
+.line-chart>img{
+    position: absolute;
+    right:-24px;
+    top:-4px;
+}
+.line-chart>p{
+    position: absolute;
+    display: none;
+    right:-24px;
+    bottom: -24px;
+}
+.line-chart:hover>p{
+    display: block;
+}
+
 .container{
     float:left;
     width: calc(100% - 18% - 24px);
@@ -22,15 +106,15 @@
     border-radius: 16px;
     padding:12px;
 }
-.container :nth-child(1),.container :nth-child(2),.container :nth-child(3){
+.container>:nth-child(1),.container>:nth-child(2),.container>:nth-child(3){
     grid-column: span 2;
-    grid-row: span 2;
+    grid-row: span 1;
 }
-.container :nth-child(3){
+.container>:nth-child(3){
     grid-row: span 6;
 }
-.container :nth-child(4){
-    grid-row: span 4;
+.container>:nth-child(4){
+    grid-row: span 5;
     grid-column: span 4;
 }
 .filter>*{
@@ -44,7 +128,15 @@
 }
 #exam{
     min-width: 110px;
-    width: 60%;
+}
+.rank-item{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 18px;
+    height: 80px;
+    border-bottom: 1px solid #d9d9d9;
+    cursor:pointer;
 }
 
 @media (max-width: 1200px) {

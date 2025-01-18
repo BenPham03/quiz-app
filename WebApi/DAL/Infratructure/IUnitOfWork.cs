@@ -9,7 +9,7 @@ namespace DAL.Infratructure
                 DataDbContext Context { get; }
 
                 //CategoryRepository Category { get; }
-                ReportRepository Report { get; }
+                // ReportRepository Report { get; }
                 //ProductRepository Product { get; }
                 IQuizRepository Quiz { get; }
                 IQuestionRepository Question { get; }
@@ -17,8 +17,10 @@ namespace DAL.Infratructure
                 IAttemptRepository Attempt { get; }
                 IUserAnswerRepository UserAnswer { get; }
                 IInteractionRepository Interaction { get; }
+                ReportRepository Report { get; }
+                AdminRepository Admin { get; }
 
-        GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
+                GenericRepository<TEntity> GenericRepository<TEntity>() where TEntity : class;
 
                 int SaveChanges();
                 Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

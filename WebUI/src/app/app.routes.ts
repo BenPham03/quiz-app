@@ -6,6 +6,8 @@ import { RegisterComponent } from './features/Account/register/register.componen
 import { ReportComponent } from './features/report/report/report.component';
 import { HomeComponent } from './features/Home/home/home.component';
 import { DoExamComponent } from './features/Do-Exam/do-exam/do-exam.component';
+import { AdminComponent } from './features/admin/admin/admin.component';
+
 
 export const routes: Routes = [
     {path:"example",component:ExampleComponent,canActivate:[exampleGuard]},
@@ -25,5 +27,7 @@ export const routes: Routes = [
     {
         path: 'doExam/:quizId',
         component: DoExamComponent,
-    }
+    },
+    { path: "report", component: ReportComponent },
+    { path: "admin", component: AdminComponent }
 ];

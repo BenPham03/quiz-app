@@ -22,27 +22,27 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("top-5-right/{examId}")]
-        public async Task<IActionResult> GetTop5Right(Guid examId)
+        public async Task<IActionResult> GetTop5Right(Guid examId, [FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-            return Ok(await _service.top5right(examId));
+            return Ok(await _service.top5right(examId,from,to));
         }
 
         [HttpGet("top-5-wrong/{examId}")]
-        public async Task<IActionResult> GetTop5Wrong(Guid examId)
+        public async Task<IActionResult> GetTop5Wrong(Guid examId, [FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-            return Ok(await _service.top5wrong(examId));
+            return Ok(await _service.top5wrong(examId, from, to));
         }
 
         [HttpGet("rank/{examId}")]
-        public async Task<IActionResult> GetRank(Guid examId)
+        public async Task<IActionResult> GetRank(Guid examId, [FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-            return Ok(await _service.Rank(examId));
+            return Ok(await _service.Rank(examId, from, to));
         }
 
         [HttpGet("analyst/{examId}")]
-        public async Task<IActionResult> GetAnalyst(Guid examId)
+        public async Task<IActionResult> GetAnalyst(Guid examId, [FromQuery] DateTime from, [FromQuery] DateTime to)
         {
-            return Ok(await _service.Analyst(examId));
+            return Ok(await _service.Analyst(examId, from, to));
         }
     }
 }
