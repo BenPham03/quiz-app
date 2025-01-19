@@ -1,29 +1,37 @@
 <header>
-    <div class="search">
-        <input type="checkbox" style="display: none;" id="search-toggle">
-        <label for="search-toggle">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </label>
-        <input type="text" placeholder="Search">
+  <div class="search">
+    <input type="checkbox" style="display: none" id="search-toggle" />
+    <label for="search-toggle">
+      <i class="fa-solid fa-magnifying-glass" (click)="onSubmit()"></i>
+    </label>
+    <input type="text" placeholder="Search" [(ngModel)]="quizId" />
+  </div>
+  <div class="box">
+    <i class="fa-solid fa-circle-info"></i>
+    <p>Help</p>
+  </div>
+  <div class="account">
+    <label for="account-toggle">
+      <img src="/favicon.ico" alt="" />
+    </label>
+    <input type="checkbox" style="display: none" id="account-toggle" />
+    <div class="account-option">
+      <div
+        class="account-option-item logout"
+        *ngIf="isLogin"
+        (click)="logOut()"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <p>Logout</p>
+      </div>
+      <div
+        class="account-option-item signIn"
+        *ngIf="!isLogin"
+        (click)="signIn()"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <p>SignIn</p>
+      </div>
     </div>
-    <div class="box">
-        <i class="fa-solid fa-circle-info"></i>
-        <p>Help</p>
-    </div>
-    <div class="account">
-        <label for="account-toggle">
-            <img src="/favicon.ico" alt="">
-        </label>
-        <input type="checkbox" style="display: none;" id="account-toggle">
-        <div class="account-option">
-            <div class="account-option-item logout" *ngIf="isLogin" (click)="logOut()">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <p>Logout</p>
-            </div>
-            <div class="account-option-item signIn" *ngIf="!isLogin" (click)="signIn()">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                <p>SignIn</p>
-            </div>
-        </div>
-    </div>
+  </div>
 </header>

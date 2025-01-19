@@ -3,35 +3,44 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../features/Account/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isLogin : boolean =false 
-constructor(private authService : AuthService,
+  isLogin: boolean = false;
+  quizId: string = '';
+  constructor(
+    private authService: AuthService,
     private router: Router,
     private cookie: CookieService
-  ){}
-  logOut(){
+  ) {}
+  logOut() {
     this.authService.logout();
-    window.location.reload()
+    window.location.reload();
   }
-  signIn(){
-    this.router.navigate(['/login'])
-
+  signIn() {
+    this.router.navigate(['/login']);
   }
-  ngOnInit(){
-    const token = this.cookie.get('token')
-    if(!token)
-    {
-      this.isLogin = false
+  ngOnInit() {
+    const token = this.cookie.get('token');
+    if (!token) {
+      this.isLogin = false;
+    } else {
+      this.isLogin = true;
     }
-    else {
-      this.isLogin = true
+  }
+  navigateTo(page: string) {
+    this.router.navigate([`/${page}`]);
+  }
+  onSubmit() {
+    console.log(this.quizId);
+    if (this.quizId.trim()) {
+      this.router.navigate(['/search', this.quizId]);
     }
   }
 }

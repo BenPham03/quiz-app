@@ -1,23 +1,31 @@
 <div class="quiz-container">
-    <!-- Tiêu đề -->
-    <header class="quiz-header">
-      <div class="quiz-logo"  (click)="onHome()">
-        <span class="quiz-title">Quizizz</span>
-        <span class="quiz-basic">BASIC</span>
-      </div>
-      <div class="quiz-main-title">Quizz Title</div>
-      <div class="countDown">
-        <p *ngIf="remainingTime">{{ getMinutes(remainingTime) }}:{{ getSeconds(remainingTime) | number: '2.0' }}</p>
-      </div>
+  <!-- Tiêu đề -->
+  <header class="quiz-header">
+    <div class="quiz-logo" (click)="onHome()">
+      <span class="quiz-title">Quizizz</span>
+      <span class="quiz-basic">BASIC</span>
+    </div>
+    <div class="quiz-main-title">Quizz Title</div>
+    <div class="countDown">
+      <p *ngIf="remainingTime">
+        {{ getMinutes(remainingTime) }}:{{
+          getSeconds(remainingTime) | number : "2.0"
+        }}
+      </p>
+    </div>
 
-      <!-- <div class="quiz-timer">{{ displayTime }}</div> -->
-      <div class="quiz-date">{{ currentDate }}</div>
-      <div class="quiz-times">{{ currentTime }}</div>
-    </header>
-  
+    <!-- <div class="quiz-timer">{{ displayTime }}</div> -->
+    <div class="quiz-date">{{ currentDate }}</div>
+    <div class="quiz-times">{{ currentTime }}</div>
+  </header>
+
   <!-- Nội dung chính -->
   <div class="quiz-content">
-    <div class="question-card" *ngFor="let question of questions; let idx = index" [id]="'question-' + question.id">
+    <div
+      class="question-card"
+      *ngFor="let question of questions; let idx = index"
+      [id]="'question-' + question.id"
+    >
       <div class="question-header">
         <p class="question-title">
           <strong>#{{ idx + 1 }}:</strong> {{ question.questionContent }}
@@ -30,33 +38,48 @@
         </div>
       </div>
       <div class="options">
-        <label *ngFor="let answer of question.answers; let i = index" class="option-label">
+        <label
+          *ngFor="let answer of question.answers; let i = index"
+          class="option-label"
+        >
           <!-- Dùng radio cho câu hỏi kiểu "Choice" -->
-          <input *ngIf="question.questionType === 0" type="radio" name="question{{ idx + 1 }}" 
-          (change)="markAnswered(idx +1,question.id,  answer.id)" />
-  
+          <input
+            *ngIf="question.questionType === 0"
+            type="radio"
+            name="question{{ idx + 1 }}"
+            (change)="markAnswered(idx + 1, question.id, answer.id)"
+          />
+
           <!-- Dùng checkbox cho câu hỏi kiểu "Multi" -->
-          <input *ngIf="question.questionType === 1" type="checkbox" (change)="markAnswered(idx +1,question.id,  answer.id)"/>
+          <input
+            *ngIf="question.questionType === 1"
+            type="checkbox"
+            (change)="markAnswered(idx + 1, question.id, answer.id)"
+          />
           {{ answer.answerContent }}
         </label>
       </div>
     </div>
   </div>
-  
-    <!-- Thanh bên -->
-    <div class="quiz-sidebar">
-      <div
-        class="question-indicator"
-        *ngFor="let question of questions; let idx = index "
-        [ngClass]="{ 'mark-question' : marksQuestions.has(idx +1),'answered': answeredQuestions.has(idx +1), 'not-answered': !answeredQuestions.has(idx +1) }"
-        (click)="scrollToQuestion(question.id)">
-        {{ idx+1 }}
-      </div>
-    </div> 
-  
-    <!-- Chân trang -->
-    <footer class="quiz-footer">
-      <button class="submit-button" (click)="onSubmit()">Submit</button>
-    </footer>
+
+  <!-- Thanh bên -->
+  <div class="quiz-sidebar">
+    <div
+      class="question-indicator"
+      *ngFor="let question of questions; let idx = index"
+      [ngClass]="{
+        'mark-question': marksQuestions.has(idx + 1),
+        answered: answeredQuestions.has(idx + 1),
+        'not-answered': !answeredQuestions.has(idx + 1)
+      }"
+      (click)="scrollToQuestion(question.id)"
+    >
+      {{ idx + 1 }}
+    </div>
   </div>
-  
+
+  <!-- Chân trang -->
+  <footer class="quiz-footer">
+    <button class="submit-button" (click)="onSubmit()">Submit</button>
+  </footer>
+</div>

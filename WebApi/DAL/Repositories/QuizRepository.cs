@@ -64,5 +64,14 @@ namespace DAL.Repositories
             return quiz;
 
         }
+        public async Task<List<Quizzes>> GetItems(string item)
+        {
+            if (Guid.TryParse(item, out var guid))
+            {
+                var quiz = await _dbContext.Quizzes.Where(c => c.Id == guid).ToListAsync();
+                return quiz;
+            }
+            return await _dbContext.Quizzes.Where(c => c.Title.ToLower().Contains(item.ToLower())).ToListAsync();
+        }
     }
 }

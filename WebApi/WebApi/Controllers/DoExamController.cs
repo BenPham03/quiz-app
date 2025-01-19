@@ -31,7 +31,7 @@ namespace WebApi.Controllers
                 {
                     var user = await _userManager.FindByNameAsync(userName);
                     var createAttempt = submitExamRequest.Attempt.ToAttemptFromCreate(user.Id);
-                    var userAnswer = submitExamRequest.UserAnswers.Select(c => c.ToUserAnswerFromCreate()).ToList();
+                    var userAnswer = submitExamRequest.UserAnswers?.Select(c => c.ToUserAnswerFromCreate()).ToList() ?? new List<UserAnswers>(); ;
                     await _doExamService.SubmitAsync(userAnswer, createAttempt);
                     return Ok();
                 }

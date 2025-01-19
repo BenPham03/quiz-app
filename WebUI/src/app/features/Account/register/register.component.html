@@ -1,28 +1,45 @@
 <div class="container">
-    <div class="left-panel">
-        <h1>Sign Up</h1>
-        <form #ngForm (ngSubmit)="onFormSubmit()">
-            <div  class="input-group">
-                <span class="icon">🔖</span>
-                <input type="email" placeholder="Email"  [(ngModel)] = "model.Email" name="Email" required>
-            </div>
-            <div class="input-group">
-                <span class="icon">🔖</span>
-                <input type="username" placeholder="Username"  [(ngModel)] = "model.UserName" name="Username" required>
-            </div>
-            <div class="input-group">
-                <span class="icon">🔖</span>
-                <input type="password" placeholder="Password"  [(ngModel)] = "model.Password" name="Password" required>
-                <span class="icon toggle-password">👁️</span>
-            </div>
-            
-            <div class="actions">
-                <span>Already have an account? <a href="/login">Login!</a></span>
-            </div>
-            <button type="submit" class="btn signup">Sign up</button>
-            <div id="buttonDiv">Google</div>
-        </form>
-    </div>
-    <div class="right-panel"></div>
+  <div class="left-panel">
+    <h1>Sign Up</h1>
+    <form #ngForm (ngSubmit)="onFormSubmit()">
+      <div class="input-group">
+        <span class="icon">🔖</span>
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="model.Email"
+          name="Email"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔖</span>
+        <input
+          type="username"
+          placeholder="Username"
+          [(ngModel)]="model.UserName"
+          name="Username"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔖</span>
+        <input
+          type="password"
+          placeholder="Password"
+          [(ngModel)]="model.Password"
+          name="Password"
+          required
+        />
+        <span class="icon toggle-password">👁️</span>
+      </div>
 
+      <div class="actions">
+        <span>Already have an account? <a href="/login">Login!</a></span>
+      </div>
+      <button type="submit" class="btn signup">Sign up</button>
+      <div id="buttonDiv">Google</div>
+    </form>
+  </div>
+  <div class="right-panel"></div>
 </div>

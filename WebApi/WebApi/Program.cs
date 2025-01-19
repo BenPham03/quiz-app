@@ -42,6 +42,7 @@ builder.Services.AddScoped<AttemptService>();
 builder.Services.AddScoped<UserAnswerService>();
 builder.Services.AddScoped<DoExamService>();
 builder.Services.AddScoped<InteractionService>();
+builder.Services.AddScoped<AuthService>();
 
 
 builder.Services.AddScoped<IQuizRepository, QuizRepository>();

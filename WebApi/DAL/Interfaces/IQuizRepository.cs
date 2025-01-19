@@ -13,5 +13,6 @@ namespace DAL.Interfaces
         Task<Quizzes?> UpdateAsync(Guid id, Quizzes model);
         IQueryable<Quizzes> GetDoneQuiz(string userId);
         IQueryable<Quizzes> GetFilter(bool status = true, bool isDescending = true, string includeProperties = "");
+        Task<List<Quizzes>> GetItems(string item);
     }
 }

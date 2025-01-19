@@ -16,6 +16,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BLL.Extentions;
+using BLL.Services;
 
 namespace WebApi.Controllers
 {
@@ -30,13 +32,15 @@ namespace WebApi.Controllers
         private readonly IConfiguration _configuration;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly AuthService _authService;
 
         public AuthenticationController(UserManager<AppUser> userManager,
                                  RoleManager<IdentityRole> roleManager,
                                  DataDbContext context,
                                  IConfiguration configuration,
                                  SignInManager<AppUser> signInManager,
-                                 IEmailSender emailSender) // Add this
+                                 IEmailSender emailSender,
+                                  AuthService authService) // Add this
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -44,6 +48,7 @@ namespace WebApi.Controllers
             _configuration = configuration;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _authService = authService;
         }
 
         [HttpPost("register")]
@@ -242,7 +247,18 @@ namespace WebApi.Controllers
 
             }
             return BadRequest();
-
+        }
+        [HttpPut("edit-timeline")]
+        public async Task<IActionResult> UpdateTimeline(string timeline)
+        {
+            var username = User.GetUsername();
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null)
+            {
+                var result = _authService.EditTimeLine(user,timeline);
+                return Ok(result);
+            }
+            return BadRequest();
         }
 
     }

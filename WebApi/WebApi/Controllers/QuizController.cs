@@ -61,6 +61,12 @@ namespace WebApi.Controllers
             }
             return Ok(quiz);
         }
+        [HttpGet("getItems")]
+        public async Task<IActionResult> GetItems(string items)
+        {
+            var quiz = await _quizService.GetItems(items);
+            return Ok(quiz);
+        }
         [Authorize]
         [HttpPost("add-new-quiz")]
         public async Task<IActionResult> Create([FromBody] CreateQuizVM model)

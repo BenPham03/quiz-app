@@ -18,10 +18,16 @@ namespace BLL.Services
         }
         public async Task<int> SubmitAsync(List<UserAnswers> userAnswers, Attempts attempt)
         {
+            if (userAnswers.Count() == 0)
+            {
+                attempt.Score = 0;
+                _unitOfWork.Attempt.Add(attempt);
+                return await _unitOfWork.SaveChangesAsync();
+            }
             var score = _unitOfWork.UserAnswer.Scoring(userAnswers);
             attempt.Score = score;
             _unitOfWork.Attempt.Add(attempt);
-            _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.SaveChangesAsync();
             userAnswers.ForEach(c => c.AttemptId = attempt.Id);
             _unitOfWork.UserAnswer.AddRange(userAnswers);
             return await _unitOfWork.SaveChangesAsync();

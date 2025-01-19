@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../../../core/components/header/header.component';
 import { NavComponent } from '../../../core/components/nav/nav.component';
-import { HomeService } from '../services/home.service';
-import { Quiz } from '../models/Quiz';
+import { HeaderComponent } from '../../../core/components/header/header.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Quiz } from '../models/Quiz';
+import { HomeService } from '../services/home.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateInteractionRequest, Interaction } from '../models/Interaction';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-home',
-  imports: [HeaderComponent, NavComponent, CommonModule, FormsModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  selector: 'app-search',
+  imports: [NavComponent, HeaderComponent, CommonModule, FormsModule],
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.css',
 })
-export class HomeComponent {
+export class SearchComponent {
+  userData: string = 'home';
   quizzes: Quiz[] = [];
   pageIndex: number = 1;
   pageSize: number = 6;
@@ -24,19 +25,30 @@ export class HomeComponent {
   currentQuizId: string = '';
   userName: string = '';
   currentDuration: number = 0;
-  userData: string = 'home';
+  quizId: string = '';
 
-  constructor(private homeService: HomeService, private router: Router) {}
+  constructor(
+    private homeService: HomeService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('quizId');
+      console.log(id);
+      if (id) {
+        this.quizId = id;
+      }
+    });
     this.loadNewQuizzes();
   }
 
   loadNewQuizzes(): void {
-    this.homeService.getNew().subscribe(
+    this.homeService.getItems(this.quizId).subscribe(
       (res) => {
-        this.quizzes = res.items;
-        console.log(res.items);
+        console.log(res);
+        this.quizzes = res;
       },
       (error) => console.error(error)
     );

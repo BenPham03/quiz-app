@@ -35,6 +35,11 @@ namespace BLL.Services
             var quiz = _unitOfWork.Quiz.GetDoneQuiz(userId);
             return await PaginatedResult<Quizzes>.CreateAsync(quiz, pageIndex, pageSize);
         }
+        public async Task<List<Quizzes>> GetItems(string item)
+        {
+            var quizzes = await _unitOfWork.Quiz.GetItems(item);
+            return quizzes;
+        }
     }
 
 }

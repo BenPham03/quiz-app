@@ -6,30 +6,42 @@ import { CreateInteractionRequest, Interaction } from '../models/Interaction';
 import { CreateAttemptRequest } from '../../Do-Exam/models/CreateAttemptRequest';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getNew(pageIndex: number = 1, pageSize: number = 6, status: boolean = true, isDescending: boolean = true) : Observable<any> 
-  {
+  getNew(
+    pageIndex: number = 1,
+    pageSize: number = 6,
+    status: boolean = true,
+    isDescending: boolean = true
+  ): Observable<any> {
     let params = new HttpParams()
-    .set('pageIndex', pageIndex.toString())
-    .set('pageSize', pageSize.toString())
-    .set('status', status.toString())
-    .set('isDescending', isDescending.toString());
-    return this.http.get(`${Base_URL}/Quiz/get-filter`,{params});
+      .set('pageIndex', pageIndex.toString())
+      .set('pageSize', pageSize.toString())
+      .set('status', status.toString())
+      .set('isDescending', isDescending.toString());
+    return this.http.get(`${Base_URL}/Quiz/get-filter`, { params });
   }
-  createInteraction(interaction : CreateInteractionRequest) : Observable<any>
-  {
-    console.log(interaction)
-    return this.http.post(`${Base_URL}/Interaction/add-new-interaction`, interaction) 
+  createInteraction(interaction: CreateInteractionRequest): Observable<any> {
+    console.log(interaction);
+    return this.http.post(
+      `${Base_URL}/Interaction/add-new-interaction`,
+      interaction
+    );
   }
-  deleteInteraction(quizId:string) : Observable<any>
-  {
-    let params = new HttpParams()
-    .set('quizId', quizId.toString())
-    return this.http.delete(`${Base_URL}/Interaction/delete`, {params}) 
+  deleteInteraction(quizId: string): Observable<any> {
+    let params = new HttpParams().set('quizId', quizId.toString());
+    return this.http.delete(`${Base_URL}/Interaction/delete`, { params });
+  }
+  getQuizById(quiz: string): Observable<any> {
+    let params = new HttpParams().set('id', quiz.toString());
+    return this.http.get(`${Base_URL}/Quiz/get-by-id`, { params });
+  }
+  getItems(quiz: string): Observable<any> {
+    console.log('id' + quiz);
+    let params = new HttpParams().set('items', quiz.toString());
+    return this.http.get(`${Base_URL}/Quiz/getItems`, { params });
   }
 }

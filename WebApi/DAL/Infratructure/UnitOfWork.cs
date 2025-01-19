@@ -78,16 +78,10 @@ namespace DAL.Infratructure
             _dbContext.Dispose();
         }
 
-<<<<<<< HEAD
-        //GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
-        //{
-        //    throw new NotImplementedException();
-        //}
-=======
         GenericRepository<TEntity> IUnitOfWork.GenericRepository<TEntity>()
         {
             return new GenericRepository<TEntity>(_dbContext);
         }
->>>>>>> a523be8e82fad80655561006f35292f6a5ca6515
     }
 }
+
