@@ -1,0 +1,40 @@
+<nav>
+  <img
+    src="/basic_brand_logo.webp"
+    alt=""
+    class="logo"
+    (click)="navigateTo('/home')"
+  />
+  <div class="btn-nav">
+    <i class="fa-solid fa-plus"></i>
+    <p style="margin: 0 !important" (click)="navigateTo('/add-quizzes')">
+      Create
+    </p>
+  </div>
+  <div class="nav-list">
+    <div
+      class="nav-item"
+      [ngClass]="{ active: isHome }"
+      (click)="navigateTo('/home')"
+    >
+      <i class="fa-solid fa-house"></i>
+      <p style="margin: 0 !important">Home</p>
+    </div>
+    <div
+      class="nav-item"
+      [ngClass]="{ active: isLibrary }"
+      (click)="navigateTo('/library')"
+    >
+      <i class="fa-regular fa-rectangle-list"></i>
+      <p style="margin: 0 !important">Library</p>
+    </div>
+    <div
+      class="nav-item"
+      [ngClass]="{ active: isReport }"
+      (click)="navigateTo('/report')"
+    >
+      <i class="fa-solid fa-chart-line"></i>
+      <p style="margin: 0 !important">Reports</p>
+    </div>
+  </div>
+</nav>

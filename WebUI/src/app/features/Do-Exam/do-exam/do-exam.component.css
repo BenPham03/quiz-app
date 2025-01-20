@@ -1,0 +1,206 @@
+/* Đảm bảo body và html có chiều cao 100% */
+html, body {
+    height: 100%;
+    margin: 0; /* Loại bỏ khoảng cách mặc định */
+    padding: 0; /* Loại bỏ padding mặc định */
+    background-color: #e5e5e5;
+  }
+  
+  /* Tổng quan */
+  .quiz-container {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    grid-template-rows: auto 1fr auto;
+    height: 97.7vh;
+    background-color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  /* Tiêu đề */
+  .quiz-header {
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn theo chiều dọc */
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 2px solid #ddd;
+    height: 40px; /* Chiều cao cố định */
+  }
+  
+  .quiz-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Đảm bảo phần logo có thể click được */
+  }
+  
+  .quiz-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(111, 5, 111);
+    margin-top: -5px; /* Thêm khoảng cách từ trên */
+  }
+  .countDown{
+    height: 20px;
+  }
+  .quiz-basic {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #7e1db6;
+    background-color: hsl(276, 79%, 96%);
+    padding: 5px 10px;
+    padding-top: px;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  .quiz-main-title {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+    margin-left: 200px;
+  }
+  
+  .quiz-timer {
+    background-color: #6a0dad;
+    color: #fff;
+    text-align: right; /* Đảm bảo đồng hồ đếm ngược nằm bên phải */
+    margin-top: -5px; /* Thêm khoảng cách từ trên */
+    margin-left: 420px; /* Thêm khoảng cách nếu cần */
+    padding: 3px 10px; /* Thêm khoảng cách 3px ở trên và dưới, và 10px ở bên trái và phải */
+    border-radius: 5px; /* Bo góc của phần tử với bán kính 5px, tạo hiệu ứng góc tròn */
+  }
+  
+  .quiz-date {
+    background-color: #e5e5e5;
+    color: #009df1;
+    margin-right: -60px;
+    margin-top: -5px; /* Thêm khoảng cách từ trên */
+    padding: 3px 10px; /* Thêm khoảng cách 3px ở trên và dưới, và 10px ở bên trái và phải */
+    border-radius: 5px; /* Bo góc của phần tử với bán kính 5px, tạo hiệu ứng góc tròn */
+  }
+  
+  .quiz-times {
+    background-color: #e5e5e5;
+    color: #009df1;
+    margin-top: -5px; /* Thêm khoảng cách từ trên */
+    padding: 3px 10px; /* Thêm khoảng cách 3px ở trên và dưới, và 10px ở bên trái và phải */
+    border-radius: 5px; /* Bo góc của phần tử với bán kính 5px, tạo hiệu ứng góc tròn */
+  }
+  
+  /* Nội dung chính */
+  .quiz-content {
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f7f7f7;
+    max-width: calc(100vw - 260px); /*Đảm bảo nội dung chính không chiếm hết không gian*/
+  }
+  
+  .question-card {
+    background-color: #f1ddff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .question-title {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .reseen-checkbox {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .options {
+    margin: 10px 0;
+  }
+  
+  .option-label {
+    display: block;
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  /* Thanh bên */
+  .quiz-sidebar {
+    background-color: #f9f9f9;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 10px; /* Khoảng cách giữa các hàng */
+    column-gap: 10px; /* Khoảng cách giữa các cột */
+    align-content: start; /* Căn nội dung từ đầu */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung quá dài */
+  }
+  
+  .question-indicator {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .not-answered {
+    background-color: #15d034; /* Màu đỏ khi chưa chọn đáp án */
+  }
+  .mark-question {
+    background-color: #fd4040!important;
+  }
+  .answered {
+    background-color: purple; /* Màu tím khi đã chọn đáp án */
+  }
+  
+  .question-indicator:hover {
+    opacity: 0.8;
+  }
+  
+  /* Chân trang */
+  .quiz-footer {
+    grid-column: span 2;
+    background-color: #fff;
+    text-align: center;
+    padding: 15px;
+    border-top: 2px solid #ddd;
+    height: 25px; /* Chiều cao cố định */
+  }
+  
+  .submit-button {
+    font-weight: bold;
+    background-color: #6a0dad;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #520d9d;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  

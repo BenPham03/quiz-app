@@ -1,0 +1,24 @@
+body {
+  background-color: #e9ecef;
+  padding: auto;
+}
+.form-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btn-purple {
+  background-color: #6f42c1;
+  color: white;
+  
+}
+.btn-purple:hover {
+  background-color: #5a379e;
+}
+.btn-spacing {
+  margin-right: 5px;
+}
+.btn-spacing-left{
+  margin-left: 5px;
+}

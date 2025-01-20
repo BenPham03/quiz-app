@@ -1,0 +1,106 @@
+<app-nav [userData]="userData"></app-nav>
+<app-header></app-header>
+<div class="filter">
+  <div>
+    <label for="exam" style="width: fit-content">Filter:</label>
+    <select
+      name="exam"
+      id="exam"
+      [(ngModel)]="idNow"
+      (ngModelChange)="loadData()"
+    >
+      <option *ngFor="let item of QuizzList" [value]="item.id">
+        {{ item.title | splitstring : 20 }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <label for="datefrom">From: </label>
+    <input
+      type="datetime-local"
+      placeholder="Date From"
+      [(ngModel)]="from"
+      (ngModelChange)="loadData()"
+    />
+  </div>
+  <div>
+    <label for="dateto">To: </label>
+    <input
+      type="datetime-local"
+      placeholder="Date To"
+      [(ngModel)]="to"
+      (ngModelChange)="loadData()"
+    />
+  </div>
+</div>
+<div class="container">
+  <div class="box">
+    <p>Top 5 right</p>
+    <p style="font-size: 18px" *ngFor="let item of Top5Right">
+      {{ item.questionContent | splitstring : 20 }}
+    </p>
+  </div>
+  <div class="box">
+    <p>Top 5 wrong</p>
+    <p style="font-size: 18px" *ngFor="let item of Top5Wrong">
+      {{ item.questionContent | splitstring : 20 }}
+    </p>
+  </div>
+  <div class="box">
+    <p>Rank</p>
+    <div class="rank-item" *ngFor="let item of Ranks; let i = index">
+      <p>#{{ i + 1 }}</p>
+      <img
+        [src]="item.image ? '/favicon.ico' : item.image"
+        alt=""
+        width="36px"
+      />
+      <div>
+        <p style="font-size: 18px">{{ item.userName }}</p>
+        <p style="font-size: 18px">
+          {{ item.attemptAt | date : "dd/MM/yyyy HH:mm" }}
+        </p>
+      </div>
+      <div>
+        <p style="font-size: 18px; text-align: end">{{ item.score }} %</p>
+        <p style="font-size: 18px; text-align: end">
+          {{ formatToMinutesSeconds(item.duration) }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <div id="chart" [style.width.px]="chartWidth * x">
+      <div
+        class="line-chart"
+        *ngFor="let item of Analyst"
+        [style.grid-column]="
+          calculateMinutesDifference(
+            earliestEntry.attemptAt.getTime(),
+            item.attemptAt.getTime()
+          ) +
+          1 +
+          ' / ' +
+          calculateMinutesDifference(
+            earliestEntry.attemptAt.getTime(),
+            item.attemptAt.getTime() + item.duration * 1000
+          )
+        "
+        [style.grid-row]="generateRow() + ' / span 1'"
+      >
+        <img src="/favicon.ico" alt="" width="12px" class="line-image" />
+        <p style="font-size: 12px">{{ item.userName }} - {{ item.score }} %</p>
+      </div>
+      <p *ngIf="earliestEntry" style="font-size: 12px" id="early">
+        {{ formatDateIntl(earliestEntry.attemptAt) }}
+      </p>
+      <p *ngIf="latestEntry" style="font-size: 12px" id="last">
+        {{
+          formatDateIntl(
+            latestEntry.attemptAt.getTime() + latestEntry.duration * 1000
+          )
+        }}
+      </p>
+    </div>
+  </div>
+</div>

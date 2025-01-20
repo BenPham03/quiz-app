@@ -1,0 +1,55 @@
+<app-nav [userData]="userData"></app-nav>
+<app-header></app-header>
+<div id="container">
+  <div id="quiz-done" *ngFor="let quiz of quizzes">
+    <div class="done-quiz-card">
+      <div class="image-placeholder">
+        <img src="/Quiz.webp" alt="Quiz" />
+      </div>
+      <div class="content">
+        <h3>{{ quiz.title }}</h3>
+        <button class="try-button" (click)="openModal(quiz.id, quiz.config)">
+          Try
+        </button>
+      </div>
+      <p style="font-size: 15px">Subject</p>
+      <div class="action">
+        <p>{{ quiz.description }}</p>
+        <div
+          class="heart"
+          [ngClass]="{ saved: quiz.interactions.length != 0 }"
+          (click)="addNewInteraction(quiz.id, quiz.interactions)"
+        >
+          ♡
+        </div>
+
+        <!-- <div class="score">80</div> -->
+      </div>
+      <div class="footer">
+        <div class="avatars"></div>
+        <!-- <div class="heart">♡</div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  id="modal-overlay"
+  class="overlay"
+  [class.show]="isModalVisible"
+  (click)="handleOverlayClick($event)"
+></div>
+
+<div id="retry-modal" class="modal" [class.show]="isModalVisible">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeModal()">×</span>
+    <h2>Retry Quiz</h2>
+    <label for="name">Enter your name:</label>
+    <input
+      type="text"
+      id="name"
+      [(ngModel)]="userName"
+      placeholder="Your name"
+    />
+    <button (click)="submitRetry()" class="start-quiz">Start quiz</button>
+  </div>
+</div>

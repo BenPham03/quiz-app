@@ -1,0 +1,35 @@
+<mat-sidenav-container>
+    <mat-sidenav opened="true" mode="side">
+        <nav class="sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="logo.png" alt="Quizizz Logo" />
+            </div>
+
+            <!-- Create Button -->
+            <button class="btn-create" routerLink="add-quizzes">+ Create</button>
+
+            <!-- Navigation Links -->
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <i class="icon-eye"></i>
+                    <img src="home-icon.png" alt="">
+                    <span>Home</span>
+                </li>
+                <li class="nav-item" routerLink="library">
+                    <i class="icon-eye" ></i>
+                    <img src="library-icon.png" alt="">
+                    <span>Library</span>
+                </li>
+                <li class="nav-item ">
+                    <i class="icon-eye"></i>
+                    <img src="report-icon.png" alt="">
+                    <span>Reports</span>
+                </li>
+            </ul>
+        </nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
