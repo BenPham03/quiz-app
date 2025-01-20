@@ -58,7 +58,7 @@ namespace BLL.Services.Base
             return await _unitOfWork.GenericRepository<T>().GetAllAsync();
         }
 
-        public async Task<PaginatedResult<T>> GetAsync(Expression<Func<T, bool>>? filter = null,Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,string includeProperties = "",int pageIndex = 1,int pageSize = 10)
+        public async Task<PaginatedResult<T>> GetAsync(Expression<Func<T, bool>>? filter = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, string includeProperties = "", int pageIndex = 1, int pageSize = 10)
         {
             // Truy vấn dữ liệu ban đầu
             var query = _unitOfWork.GenericRepository<T>().Get(filter, orderBy);
@@ -82,7 +82,7 @@ namespace BLL.Services.Base
             // Lấy dữ liệu từ repository với `includeProperties`
             var query = _unitOfWork.GenericRepository<T>().Get(
                 filter: x => EF.Property<Guid>(x, "Id") == id // Sử dụng EF.Property để truy vấn
-                
+
             );
             if (!string.IsNullOrWhiteSpace(includeProperties))
             {

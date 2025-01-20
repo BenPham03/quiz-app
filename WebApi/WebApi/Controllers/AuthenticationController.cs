@@ -255,7 +255,7 @@ namespace WebApi.Controllers
             var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
-                var result = _authService.EditTimeLine(user,timeline);
+                var result = _authService.EditTimeLine(user, timeline);
                 return Ok(result);
             }
             return BadRequest();

@@ -90,6 +90,5 @@ namespace DAL.Repositories
         {
             return _dbSet.Where(predicate);
         }
-
     }
 }
